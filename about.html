@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我们 | 毅阳工作室</title>
+  <meta name="description" content="了解毅阳工作室Yearnstudio - 一个成立于2022年的云工作室">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <style>
+    :root {
+      --bg-color: #000;
+      --text-color: #fff;
+      --nav-bg: rgba(0, 0, 0, 0.8);
+      --footer-bg: #1a1a1a;
+      --footer-text: #ccc;
+      --footer-h3: #fff;
+      --link-color: #fff;
+      --link-hover: #ccc;
+      --card-bg: #1a1a1a;
+      --accent-color: #007bff;
+    }
+
+    .light-mode {
+      --bg-color: #fff;
+      --text-color: #000;
+      --nav-bg: rgba(255, 255, 255, 0.8);
+      --footer-bg: #f8f8f8;
+      --footer-text: #666;
+      --footer-h3: #333;
+      --link-color: #000;
+      --link-hover: #555;
+      --card-bg: #f0f0f0;
+    }
+
+    body {
+      margin: 0;
+      font-family: "DengXian", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* 导航栏 */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      box-sizing: border-box;
+    }
+
+    .nav-title {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--link-color);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--text-color);
+      color: var(--text-color);
+      padding: 4px 12px;
+      cursor: pointer;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      transition: all 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background: var(--text-color);
+      color: var(--bg-color);
+    }
+
+    /* 内容区域 */
+    .container {
+      max-width: 800px;
+      margin: 100px auto 60px;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 15px;
+    }
+
+    .section h2 {
+      color: var(--accent-color);
+      margin-top: 0;
+    }
+
+    .section p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* 页脚 */
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 40px;
+      background-color: var(--footer-bg);
+      gap: 30px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .footer-column h3 {
+      font-size: 16px;
+      margin-bottom: 15px;
+      color: var(--footer-h3);
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column li {
+      margin-bottom: 8px;
+    }
+
+    .footer-column a {
+      color: var(--footer-text);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-column a:hover {
+      color: var(--link-hover);
+    }
+
+    .footer-brand-social {
+      flex: 2;
+      min-width: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .brand-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo-img {
+      width: 36px;
+      height: 36px;
+    }
+
+    .brand-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--footer-h3);
+    }
+
+    .copyright {
+      font-size: 0.75rem;
+      color: var(--footer-text);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    .social-icon {
+      width: 28px;
+      height: 28px;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .social-icon:hover {
+      opacity: 1;
+    }
+
+    .social-icon img {
+      width: 100%;
+      height: 100%;
+    }
+
+    body:not(.light-mode) .social-links .social-icon img {
+      filter: brightness(0) invert(1);
+    }
+
+    /* 汉堡菜单 */
+    .burger-menu {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .burger-menu .bar {
+      width: 100%;
+      height: 3px;
+      background-color: var(--text-color);
+      border-radius: 10px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .burger-menu {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: var(--nav-bg);
+        padding: 20px 0;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-brand-social {
+        align-items: center;
+        text-align: center;
+      }
+
+      .brand-info {
+        justify-content: center;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <a href="/" class="nav-title">
+      <img src="/logo.svg" alt="logo" class="nav-logo">
+    </a>
+    <button class="burger-menu" id="burgerMenu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/projects">项目</a>
+      <a href="/about">关于</a>
+      <a href="/join">招纳贤才</a>
+      <button class="theme-toggle" id="themeToggle">显示模式</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>关于我们</h1>
+    
+    <div class="section">
+      <h2>工作室简介</h2>
+      <p>毅阳工作室（Yearnstudio）成立于2022年，是一个充满活力的云端技术工作室。我们由一群热爱技术、追求创新的开发者、设计师和创作者组成。</p>
+      <p>我们致力于在多个技术领域进行探索与研究，包括但不限于Scratch生态开发、云服务、AI应用以及开源工具。秉持着“开源公益”的精神，我们希望通过技术的力量，为社区创造价值。</p>
+    </div>
+
+    <div class="section">
+      <h2>我们的愿景</h2>
+      <p>“与您共赴群星”不仅是我们的口号，更是我们的信念。我们相信技术应该是开放的、普惠的。我们努力打造高质量的公益产品，降低技术门槛，让更多人能够享受到科技带来的便利和乐趣。</p>
+    </div>
+
+    <div class="section">
+      <h2>发展历程</h2>
+      <p>从最初的几个人的兴趣小组，到如今拥有多项成熟产品的成熟工作室，我们始终保持初心。在发展的道路上，我们不断吸收优秀的成员，完善我们的技术栈，提升服务质量。</p>
+    </div>
+  </div>
+
+  <footer class="footer-container">
+    <div class="footer-column">
+      <h3>导航</h3>
+      <ul>
+        <li><a href="/">返回主页</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>支持</h3>
+      <ul>
+        <li><a href="/about">关于我们</a></li>
+        <li><a href="/join">招纳贤才</a></li>
+      </ul>
+    </div>
+    <div class="footer-column footer-brand-social">
+      <div class="brand-info">
+        <img src="/logo.svg" alt="Yearnstudio Logo" class="footer-logo-img">
+        <div>
+          <span class="brand-name">Yearnstudio</span><br>
+          <span class="copyright">All rights reversed © 2022-<span id="currentYear"></span></span>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="https://space.bilibili.com/1128177448" class="social-icon" title="Bilibili">
+          <img src="/images/bilibili.svg" width="32" height="32">
+        </a>
+        <a href="https://qm.qq.com/cgi-bin/qm/qr?k=2O7iqw_PwPDCa3UmIKgbB_bE0-vKLShS&jump_from=webapi&authKey=wf7amC4VLkzkyAK4Pu4No4LFpKpnD0H9hjSMM/tO1NgiMx0DOP3TE4fUC9UPwkuY" class="social-icon" title="QQ群">
+          <img src="/images/qq.svg" width="32" height="32">
+        </a>
+        <a href="https://discord.gg/A8W4jHQf4a" class="social-icon" title="Discord群组">
+          <img src="/images/discord.svg" width="32" height="32">
+        </a>
+        <a href="mailto:yearnstudio@outlook.com" class="social-icon" title="官方邮箱">
+          <img src="/images/mail.svg" width="32" height="32">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 主题切换
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        body.classList.add('light-mode');
+        themeToggle.textContent = '暗色模式';
+      } else {
+        body.classList.remove('light-mode');
+        themeToggle.textContent = '亮色模式';
+      }
+    }
+
+    const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(storedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+      applyTheme(newTheme);
+    });
+
+    // 汉堡菜单
+    const burgerMenu = document.getElementById('burgerMenu');
+    const navLinks = document.querySelector('.nav-links');
+    burgerMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
