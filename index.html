@@ -409,6 +409,8 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
+      position: relative; /* 添加相对定位 */
+      padding-bottom: 50px; /* 为链接留出空间 */
     }
 
     .testimonial-card img {
@@ -433,6 +435,10 @@
       color: #007bff;
       text-decoration: none;
       font-size: 0.85rem;
+      position: absolute; /* 绝对定位 */
+      bottom: 20px; /* 吸附到底部，与 padding 保持一致 */
+      left: 20px;
+      right: 20px;
     }
 
 
@@ -1037,6 +1043,18 @@
         content: '这是一个非常有潜力的资源站，里面的成员非常的油菜花',
         img: '/images/hilsdack.jpg',
         url: 'https://pixelmap.minegraph.cn/user/hils_dack/?profiletab=posts'
+      },
+      {
+        name: 'GMUnitX',
+        content: '难得的公益性质站点，界面现代简洁，用户体验良好，兼具稳定性和快速性',
+        img: '/images/gmunitx.jpg',
+        url: 'https://www.gmxse.top'
+      },
+      {
+        name: 'samsungi9308',
+        content: '资源站整体体验良好，可以解决123云盘下载要求付费的问题，让我的粉丝可以更方便的下载我分享的文件',
+        img: '/images/samsung.jpg',
+        url: 'https://space.bilibili.com/349260010'
       }
     ];
 
