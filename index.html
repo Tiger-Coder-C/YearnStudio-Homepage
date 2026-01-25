@@ -852,17 +852,17 @@
       </div>
       <div class="social-links">
         <a href="https://space.bilibili.com/1128177448" class="social-icon" title="Bilibili">
-          <img src="" data-src="/images/bilibili.svg" width="32" height="32" class="lazy-load">
+          <img src="" id="bilibili-icon" width="32" height="32">
         </a>
         <a href="https://qm.qq.com/cgi-bin/qm/qr?k=2O7iqw_PwPDCa3UmIKgbB_bE0-vKLShS&jump_from=webapi&authKey=wf7amC4VLkzkyAK4Pu4No4LFpKpnD0H9hjSMM/tO1NgiMx0DOP3TE4fUC9UPwkuY"
           class="social-icon" title="QQ群">
-          <img src="" data-src="/images/qq.svg" width="32" height="32" class="lazy-load">
+          <img src="" id="qq-icon" width="32" height="32">
         </a>
         <a href="https://discord.gg/A8W4jHQf4a" class="social-icon" title="Discord群组">
-          <img src="" data-src="/images/discord.svg" width="32" height="32" class="lazy-load">
+          <img src="" id="discord-icon" width="32" height="32">
         </a>
         <a href="mailto:contact@yearn.studio" class="social-icon" title="官方邮箱">
-          <img src="" data-src="/images/mail.svg" width="32" height="32" class="lazy-load">
+          <img src="" id="mail-icon" width="32" height="32">
         </a>
         <a href="https://github.com/YearnstudioHorizon" class="social-icon" title="GitHub">
           <img src="" id="github-icon" width="32" height="32">
@@ -876,25 +876,29 @@
 
     // 懒加载功能实现
     const lazyLoadImages = () => {
-      const images = document.querySelectorAll('.lazy-load');
+      // 社交图标不再通过此函数懒加载，它们由 applyTheme 函数直接设置 src
+      // 其他需要懒加载的图片（如作品图片、成员头像、评价头像）仍通过此函数处理
+      const images = document.querySelectorAll('.lazy-load:not(.social-icon img)'); // 排除社交图标
       const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const img = entry.target;
-            img.src = img.dataset.src;
-            img.classList.remove('lazy-load');
-            observer.unobserve(img);
+            if (img.dataset.src) { // 确保有 data-src 属性才进行加载
+              img.src = img.dataset.src;
+              img.classList.remove('lazy-load');
+              observer.unobserve(img);
+            }
           }
         });
       });
 
       images.forEach(img => imageObserver.observe(img));
 
-      // 为testimonial链接添加点击事件
+      // 为testimonial链接添加点击事件 (保持不变)
       document.querySelectorAll('.testimonial-link').forEach(link => {
         link.addEventListener('click', function (e) {
           const imgSrc = this.dataset.imgSrc;
-          const img = document.querySelector(`img[data-src="${imgSrc}"]`);
+          const img = document.querySelector(`img[data-src="${imgSrc}"]`); // 这里的 img 仍然是 lazy-load 的
           if (img && !img.src) {
             e.preventDefault();
             img.addEventListener('load', () => {
@@ -1275,6 +1279,10 @@
       if (theme === 'light') {
         body.classList.add('light-mode');
         themeToggle.textContent = '暗色模式';
+        document.getElementById('bilibili-icon').src = 'https://cdn.simpleicons.org/bilibili/dark';
+        document.getElementById('qq-icon').src = 'https://cdn.simpleicons.org/tencentqq/dark';
+        document.getElementById('discord-icon').src = 'https://cdn.simpleicons.org/discord/dark';
+        document.getElementById('mail-icon').src = 'https://cdn.simpleicons.org/mail.ru/dark';
         const githubIcon = document.getElementById('github-icon');
         if (githubIcon) {
           githubIcon.src = 'https://cdn.simpleicons.org/github/dark';
@@ -1282,6 +1290,10 @@
       } else {
         body.classList.remove('light-mode');
         themeToggle.textContent = '亮色模式';
+        document.getElementById('bilibili-icon').src = 'https://cdn.simpleicons.org/bilibili/white';
+        document.getElementById('qq-icon').src = 'https://cdn.simpleicons.org/tencentqq/white';
+        document.getElementById('discord-icon').src = 'https://cdn.simpleicons.org/discord/white';
+        document.getElementById('mail-icon').src = 'https://cdn.simpleicons.org/mail.ru/white';
         const githubIcon = document.getElementById('github-icon');
         if (githubIcon) {
           githubIcon.src = 'https://cdn.simpleicons.org/github/white';
@@ -1290,14 +1302,8 @@
     }
 
     // 页面加载时，根据 localStorage 或系统偏好设置主题
-    const storedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (storedTheme) {
-      applyTheme(storedTheme);
-    } else {
-      applyTheme(prefersDark ? 'dark' : 'light');
-    }
+    const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(storedTheme);
 
     // 监听系统主题变化
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
