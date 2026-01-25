@@ -221,6 +221,7 @@
     .social-icon {
       width: 28px;
       height: 28px;
+      transition: filter 0.3s;
       opacity: 0.7;
       transition: opacity 0.3s;
     }
@@ -232,6 +233,10 @@
     .social-icon img {
       width: 100%;
       height: 100%;
+    }
+
+    .light-mode .social-links .social-icon img {
+      filter: brightness(0);
     }
 
     body:not(.light-mode) .social-links .social-icon img {
