@@ -865,7 +865,7 @@
           <img src="" data-src="/images/mail.svg" width="32" height="32" class="lazy-load">
         </a>
         <a href="https://github.com/YearnstudioHorizon" class="social-icon" title="GitHub">
-          <img src="" data-src="/images/github.svg" width="32" height="32" class="lazy-load">
+          <img src="" id="github-icon" width="32" height="32">
         </a>
       </div>
     </div>
@@ -1275,9 +1275,17 @@
       if (theme === 'light') {
         body.classList.add('light-mode');
         themeToggle.textContent = '暗色模式';
+        const githubIcon = document.getElementById('github-icon');
+        if (githubIcon) {
+          githubIcon.src = 'https://cdn.simpleicons.org/github/dark';
+        }
       } else {
         body.classList.remove('light-mode');
         themeToggle.textContent = '亮色模式';
+        const githubIcon = document.getElementById('github-icon');
+        if (githubIcon) {
+          githubIcon.src = 'https://cdn.simpleicons.org/github/white';
+        }
       }
     }
 
