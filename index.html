@@ -27,6 +27,15 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <script>
+    // 优先加载主题，避免页面闪烁
+    (function() {
+      const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      if (storedTheme === 'light') {
+        document.documentElement.classList.add('light-mode');
+      }
+    })();
+  </script>
   <style>
     :root {
       --bg-color: #000;
@@ -1264,6 +1273,7 @@
     // 函数：应用主题并更新按钮文本
     function applyTheme(theme) {
       if (theme === 'light') {
+        document.documentElement.classList.add('light-mode');
         body.classList.add('light-mode');
         themeToggle.textContent = '暗色模式';
         document.getElementById('bilibili-icon').src = 'https://cdn.simpleicons.org/bilibili/dark';
@@ -1275,6 +1285,7 @@
           githubIcon.src = 'https://cdn.simpleicons.org/github/dark';
         }
       } else {
+        document.documentElement.classList.remove('light-mode');
         body.classList.remove('light-mode');
         themeToggle.textContent = '亮色模式';
         document.getElementById('bilibili-icon').src = 'https://cdn.simpleicons.org/bilibili/white';
