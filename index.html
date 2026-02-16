@@ -29,7 +29,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <script>
     // 优先加载主题，避免页面闪烁
-    (function() {
+    (function () {
       const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       if (storedTheme === 'light') {
         document.documentElement.classList.add('light-mode');
@@ -838,6 +838,7 @@
       <ul>
         <li><a href="/about">关于我们</a></li>
         <li><a href="/join">招纳贤才</a></li>
+        <li><a href="/moments">风采展示</a></li>
       </ul>
     </div>
     <div class="footer-column" style="display: flex; flex-direction: column;">

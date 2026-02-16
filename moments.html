@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>风采展示 | 毅阳工作室</title>
+    <meta name="description" content="记录毅阳工作室Yearnstudio的点滴瞬间与精彩活动">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <script>
+        // 优先加载主题，避免页面闪烁
+        (function () {
+            const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            if (storedTheme === 'light') {
+                document.documentElement.classList.add('light-mode');
+            }
+        })();
+    </script>
+    <style>
+        /* ---------------------------------------------------------
+       复用 index.html 的核心样式变量与基础样式
+       --------------------------------------------------------- */
+        :root {
+            --bg-color: #000;
+            --text-color: #fff;
+            --nav-bg: rgba(0, 0, 0, 0.8);
+            --footer-bg: #1a1a1a;
+            --footer-text: #ccc;
+            --footer-h3: #fff;
+            --link-color: #fff;
+            --link-hover: #ccc;
+            --header-bg: #000;
+            --card-bg: #1a1a1a;
+            --accent-color: #007bff;
+            /* 新增强调色变量 */
+        }
+
+        .light-mode {
+            --bg-color: #fff;
+            --text-color: #000;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --footer-bg: #f8f8f8;
+            --footer-text: #666;
+            --footer-h3: #333;
+            --link-color: #000;
+            --link-hover: #555;
+            --header-bg: #fff;
+            --card-bg: #f0f0f0;
+        }
+
+        body {
+            margin: 0;
+            font-family: "DengXian", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* 顶部固定导航栏 (完全一致) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s;
+            box-sizing: border-box;
+            /* 确保 padding 不会撑大宽度 */
+        }
+
+        .nav-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            margin-left: auto;
+            padding-left: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--link-hover);
+        }
+
+        /* 隐藏滚动条 */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            padding: 4px 12px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-left: 10px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .theme-toggle:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* ---------------------------------------------------------
+       本页特定样式 (Gallery)
+       --------------------------------------------------------- */
+        .container {
+            max-width: 1200px;
+            margin: 100px auto 60px;
+            /* 顶部留出导航栏空间 */
+            padding: 0 20px;
+            min-height: 60vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.7;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .light-mode .gallery-item {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            /* 16:9 比例 */
+            overflow: hidden;
+            background: #222;
+        }
+
+        .light-mode .gallery-img-wrapper {
+            background: #eee;
+        }
+
+        .gallery-img-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .gallery-info {
+            padding: 20px;
+        }
+
+        .gallery-date {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .gallery-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+        }
+
+        .gallery-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* 占位图样式 */
+        .image-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            background: #222;
+            font-size: 0.9rem;
+        }
+
+        .light-mode .image-placeholder {
+            background: #e0e0e0;
+            color: #888;
+        }
+
+
+        /* ---------------------------------------------------------
+       页脚样式 (复用 index.html)
+       --------------------------------------------------------- */
+        .footer-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 40px;
+            background-color: var(--footer-bg);
+            transition: background-color 0.3s;
+        }
+
+        .footer-column {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .footer-column:last-child {
+            margin-right: 0;
+        }
+
+        .footer-column h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--footer-h3);
+            transition: color 0.3s;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 8px;
+            color: var(--footer-text);
+            transition: color 0.3s;
+        }
+
+        .footer-column a {
+            color: var(--footer-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--link-hover);
+        }
+
+        .footer-brand-social {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+        }
+
+        .brand-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-img {
+            width: 36px;
+            height: 36px;
+            transition: filter 0.3s;
+        }
+
+        body:not(.light-mode) .social-links .social-icon img {
+            filter: brightness(0) invert(1);
+        }
+
+        body:not(.light-mode) .footer-logo-img {
+            filter: brightness(1.2);
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--footer-h3);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: var(--footer-text);
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .social-icon img {
+            width: 100%;
+            height: 100%;
+            transition: filter 0.3s;
+        }
+
+        .lazy-load {
+            /* 保持基本的 lazy-load 样式，虽然这里可能不严格需要 JS lazy load */
+            transition: opacity 0.3s;
+        }
+
+        /* 汉堡菜单 (复用 index.html) */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .burger-menu .bar {
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-color);
+            border-radius: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--nav-bg);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                padding: 20px 0;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                padding: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .theme-toggle {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .burger-menu {
+                display: flex;
+                margin-left: auto;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 20px;
+            }
+
+            .footer-column {
+                margin-right: 0;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+
+            .footer-brand-social {
+                align-items: center;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="nav-title">
+            <div class="nav-logo">
+                <img src="/logo.svg" alt="logo" width="32" height="32">
+            </div>
+        </a>
+        <button class="burger-menu" id="burgerMenu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="nav-links">
+            <a href="/">首页</a>
+            <a href="/projects">项目</a>
+            <a href="/about">关于</a>
+            <a href="/join">招纳贤才</a>
+            <button class="theme-toggle" id="themeToggle">显示模式</button>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <div class="page-header">
+            <h1>风采展示</h1>
+            <p>工作室文化建设及风采展示</p>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- JS 动态加载 -->
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <!-- 页脚 -->
+    <footer class="footer-container">
+        <div class="footer-column" style="display: flex; flex-direction: column;">
+            <h3>产品</h3>
+            <ul>
+                <li><a href="https://api.yearnstudio.cn">ShangCloud</a></li>
+                <li><a href="https://sbox.yearnstudio.cn">小盒子社区</a></li>
+                <li><a href="https://black.yearnstudio.cn">云黑名单</a></li>
+                <li><a href="/projects">更多</a></li>
+            </ul>
+        </div>
+        <div class="footer-column" style="display: flex; flex-direction: column;">
+            <h3>支持</h3>
+            <ul>
+                <li><a href="/about">关于我们</a></li>
+                <li><a href="/join">招纳贤才</a></li>
+                <li><a href="/moments">风采展示</a></li>
+            </ul>
+        </div>
+        <div class="footer-column" style="display: flex; flex-direction: column;">
+            <h3>合作</h3>
+            <ul>
+                <li><a href="https://www.40code.com">40code</a></li>
+                <li><a href="https://zerocat.dev">ZeroCat</a></li>
+                <li><a href="https://houlang.cloud">厚浪云</a></li>
+                <li><a href="https://ling.hujiarong.site">灵阁</a></li>
+            </ul>
+        </div>
+        <div class="footer-column footer-brand-social">
+            <div class="brand-info">
+                <img src="/logo.svg" alt="Yearnstudio Logo" class="footer-logo-img">
+                <div style="display: flex; flex-direction: column;">
+                    <span class="brand-name">Yearnstudio</span>
+                    <span class="copyright">All rights reversed © 2022-<span id="currentYear"></span></span>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://space.bilibili.com/1128177448" class="social-icon" title="Bilibili">
+                    <img src="" id="bilibili-icon" width="32" height="32">
+                </a>
+                <a href="https://qm.qq.com/cgi-bin/qm/qr?k=2O7iqw_PwPDCa3UmIKgbB_bE0-vKLShS&jump_from=webapi&authKey=wf7amC4VLkzkyAK4Pu4No4LFpKpnD0H9hjSMM/tO1NgiMx0DOP3TE4fUC9UPwkuY"
+                    class="social-icon" title="QQ群">
+                    <img src="" id="qq-icon" width="32" height="32">
+                </a>
+                <a href="https://discord.gg/A8W4jHQf4a" class="social-icon" title="Discord群组">
+                    <img src="" id="discord-icon" width="32" height="32">
+                </a>
+                <a href="mailto:contact@yearn.studio" class="social-icon" title="官方邮箱">
+                    <img src="" id="mail-icon" width="32" height="32">
+                </a>
+                <a href="https://github.com/YearnstudioHorizon" class="social-icon" title="GitHub">
+                    <img src="" id="github-icon" width="32" height="32">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/gsap.min.js"></script>
+    <script>
+        // ---------------------------------------------------------
+        // 数据部分 (用户提供)
+        // ---------------------------------------------------------
+        const albums = [
+            {
+                title: "2026新年跨年MC线上合影",
+                date: "2026.02.16",
+                desc: "", // 用户未提供描述
+                img: "/images/2026newyear.jpg",
+                category: "活动"
+            }
+        ];
+
+        // ---------------------------------------------------------
+        // 渲染逻辑
+        // ---------------------------------------------------------
+        const grid = document.getElementById('galleryGrid');
+
+        function renderGallery() {
+            if (albums.length === 0) {
+                grid.innerHTML = '<p style="text-align:center;width:100%;opacity:0.5;">暂无内容</p>';
+                return;
+            }
+
+            albums.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'gallery-item';
+                // 使用 onerror 提供优雅降级，防止图片挂掉时很难看
+                card.innerHTML = `
+          <div class="gallery-img-wrapper">
+             <img src="${item.img}" alt="${item.title}" onerror="this.parentElement.innerHTML='<div class=\'image-placeholder\'><span>暂无预览图</span></div>'">
+          </div>
+          <div class="gallery-info">
+             <span class="gallery-date">${item.date}</span>
+             <h3 class="gallery-title">${item.title}</h3>
+             ${item.desc ? `<p class="gallery-desc">${item.desc}</p>` : ''}
+          </div>
+        `;
+                grid.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderGallery);
+
+        // ---------------------------------------------------------
+        // 主题切换 & 交互逻辑 (完全复刻 index.html)
+        // ---------------------------------------------------------
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        function applyTheme(theme) {
+            if (theme === 'light') {
+                document.documentElement.classList.add('light-mode');
+                body.classList.add('light-mode');
+                themeToggle.textContent = '暗色模式';
+                // 切换图标为无需反色的版本 (index.html 逻辑)
+                document.getElementById('bilibili-icon').src = 'https://cdn.simpleicons.org/bilibili/dark';
+                document.getElementById('qq-icon').src = 'https://cdn.simpleicons.org/qq/dark';
+                document.getElementById('discord-icon').src = 'https://cdn.simpleicons.org/discord/dark';
+                document.getElementById('mail-icon').src = 'https://cdn.simpleicons.org/mail.ru/dark';
+                const githubIcon = document.getElementById('github-icon');
+                if (githubIcon) githubIcon.src = 'https://cdn.simpleicons.org/github/dark';
+            } else {
+                document.documentElement.classList.remove('light-mode');
+                body.classList.remove('light-mode');
+                themeToggle.textContent = '亮色模式';
+                // 切换图标
+                document.getElementById('bilibili-icon').src = 'https://cdn.simpleicons.org/bilibili/white';
+                document.getElementById('qq-icon').src = 'https://cdn.simpleicons.org/qq/white';
+                document.getElementById('discord-icon').src = 'https://cdn.simpleicons.org/discord/white';
+                document.getElementById('mail-icon').src = 'https://cdn.simpleicons.org/mail.ru/white';
+                const githubIcon = document.getElementById('github-icon');
+                if (githubIcon) githubIcon.src = 'https://cdn.simpleicons.org/github/white';
+            }
+        }
+
+        const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        applyTheme(storedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+
+        // 汉堡菜单
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navLinks = document.querySelector('.nav-links');
+        burgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // 年份自动更新
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
