@@ -3,22 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About | 毅阳工作室</title>
+    <title>Contact | 毅阳工作室</title>
     <meta name="description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星" />
     <meta name="keywords" content="Yearnstudio, 毅阳工作室, Scratch, 云变量, 多人联机, ShangCloud" />
     <meta name="author" content="Yearnstudio" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yearn.studio/about.html" />
-    <meta property="og:title" content="About | 毅阳工作室" />
+    <meta property="og:url" content="https://yearn.studio/contact.html" />
+    <meta property="og:title" content="Contact | 毅阳工作室" />
     <meta property="og:description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星" />
     <meta property="og:image" content="https://yearn.studio/logo.svg" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://yearn.studio/about.html" />
-    <meta property="twitter:title" content="About | 毅阳工作室" />
+    <meta property="twitter:url" content="https://yearn.studio/contact.html" />
+    <meta property="twitter:title" content="Contact | 毅阳工作室" />
     <meta property="twitter:description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星" />
     <meta property="twitter:image" content="https://yearn.studio/logo.svg" />
 
@@ -135,8 +135,8 @@
       .connect-btn .ring-icon { width: 10px; height: 10px; border: 1px solid var(--navy); border-radius: 50%; position: relative; }
       .connect-btn .ring-icon::after { content: ""; position: absolute; top: 50%; left: 50%; width: 3px; height: 3px; transform: translate(-50%, -50%); background: var(--navy); border-radius: 50%; }
 
-      /* ==== About 内容区样式 ==== */
-      .about-wrapper {
+      /* ==== Contact 内容区样式 ==== */
+      .contact-wrapper {
         position: absolute;
         top: 18vh;
         left: 8.6vw;
@@ -149,7 +149,7 @@
         -ms-overflow-style: none;
       }
       
-      .about-wrapper::-webkit-scrollbar {
+      .contact-wrapper::-webkit-scrollbar {
         display: none;
       }
 
@@ -163,13 +163,13 @@
         text-shadow: 0 10px 22px rgba(17, 20, 60, 0.05);
       }
 
-      .about-grid {
+      .contact-grid {
         display: grid;
-        grid-template-columns: 1.6fr 1fr;
+        grid-template-columns: 1fr;
         gap: 2.5rem;
       }
 
-      .about-card {
+      .contact-card {
         background: rgba(255, 255, 255, 0.45);
         backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.6);
@@ -178,80 +178,152 @@
         box-shadow: 0 16px 32px rgba(95, 84, 188, 0.05);
         position: relative;
         overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
       }
 
-      .about-heading {
-        font-family: "Noto Serif SC", serif;
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--navy);
-        margin-bottom: 1.5rem;
+      .form-group {
+        margin-bottom: 2rem;
+        position: relative;
       }
 
-      .about-text {
-        font-size: 0.95rem;
-        font-weight: 300;
-        color: var(--gray);
-        line-height: 1.9;
-        margin-bottom: 1rem;
-      }
-
-      .capabilities-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-top: 2.5rem;
-      }
-
-      .capability-tag {
-        font-size: 0.75rem;
-        padding: 0.6rem 1.2rem;
-        border-radius: 99px;
-        border: 1px solid rgba(95, 84, 188, 0.25);
-        color: var(--violet);
-        letter-spacing: 0.08em;
-        background: rgba(255, 255, 255, 0.6);
-      }
-
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2.5rem 1.5rem;
-        margin-top: 1rem;
-      }
-
-      .stat-item {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .stat-number {
-        font-size: 3.2rem;
-        font-weight: 200;
-        color: var(--violet);
-        font-family: "Montserrat", sans-serif;
-        line-height: 1;
-      }
-
-      .stat-label {
+      .form-group label {
+        display: block;
         font-size: 0.75rem;
         font-weight: 500;
         color: var(--navy);
         letter-spacing: 0.1em;
+        margin-bottom: 0.8rem;
+      }
+
+      .form-control {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(95, 84, 188, 0.2);
+        border-radius: 12px;
+        padding: 1rem 1.2rem;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.9rem;
+        color: var(--navy);
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus {
+        background: rgba(255, 255, 255, 0.7);
+        border-color: rgba(95, 84, 188, 0.6);
+        box-shadow: 0 4px 12px rgba(95, 84, 188, 0.08);
+      }
+
+      textarea.form-control {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .submit-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        background: var(--navy);
+        color: var(--pure-white);
+        border: none;
+        border-radius: 999px;
+        padding: 1rem 2.5rem;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(17, 20, 60, 0.15);
+      }
+
+      .submit-btn:hover {
+        background: var(--violet);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(95, 84, 188, 0.25);
+      }
+
+      .info-heading {
+        font-family: "Noto Serif SC", serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 2rem;
+      }
+
+      .info-item {
+        margin-bottom: 2.5rem;
+      }
+
+      .info-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--violet);
+        letter-spacing: 0.15em;
         text-transform: uppercase;
+        margin-bottom: 0.6rem;
+        display: block;
+      }
+
+      .info-value {
+        font-size: 1.05rem;
+        font-weight: 300;
+        color: var(--navy);
+        line-height: 1.6;
+      }
+      
+      .info-value a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      
+      .info-value a:hover {
+        color: var(--violet);
+      }
+
+      /* 社交链接样式 */
+      .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1.6rem;
+        margin-bottom: 3rem;
+      }
+
+      .social-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(95, 84, 188, 0.2);
+        border-radius: 50%;
+        transition: all 0.4s ease;
+      }
+      .social-icon img {
+        opacity: 0.8;
+        transition: all 0.4s ease;
+      }
+      .social-icon:hover {
+        transform: translateY(-6px);
+        background: rgba(255, 255, 255, 0.8);
+        border-color: rgba(95, 84, 188, 0.5);
+        box-shadow: 0 12px 24px rgba(17, 20, 60, 0.1);
+      }
+      .social-icon:hover img {
+        opacity: 1;
+        transform: scale(1.15);
       }
 
       @media (max-width: 980px) {
         header { padding: 1.6rem 1.5rem; }
         .nav-container { display: none; }
-        .about-wrapper { top: 12vh; left: 5vw; right: 5vw; }
+        .contact-wrapper { top: 12vh; left: 5vw; right: 5vw; }
         .page-title { font-size: 2.2rem; }
-        .about-grid { grid-template-columns: 1fr; }
-        .about-card { padding: 2.5rem 2rem; }
+        .contact-card { padding: 2.5rem 2rem; }
       }
     </style>
   </head>
@@ -269,7 +341,7 @@
 
       <!-- 顶部导航 -->
       <header>
-        <div class="mini-logo" onclick="window.location.href='index.html'">
+        <div class="mini-logo" onclick="window.location.href='/'">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 466.5 435" fill="none">
             <path fill="#11143C" d="M21.0403 23.05L151.54 172.55L133.46 188.333L2.95972 38.8327L21.0403 23.05ZM132.439 173.902L239.369 9.39368L249.43 15.9335L239.369 9.39368C246.899 -2.19191 264.88 2.97927 265.105 16.7954L265.105 16.7954L268.998 255.746L245.002 256.137L241.108 17.1864L253.107 16.9909L241.108 17.1865C241.269 27.0551 254.112 30.7488 259.491 22.4734L259.491 22.4734L152.561 186.981L132.439 173.902ZM154.499 180.271L157.905 420.674L145.907 420.844L157.905 420.673C157.765 410.783 144.885 407.078 139.511 415.382L139.511 415.382L246.926 249.421L267.074 262.462L159.659 428.422L149.585 421.902L159.659 428.422C152.135 440.047 134.104 434.86 133.908 421.014L133.908 421.014L130.501 180.611L154.499 180.271ZM266.04 248.05L396.54 397.55L378.46 413.333L247.96 263.833L266.04 248.05ZM12 42.9414C5.37258 42.9414 0 37.5688 0 30.9414C0 24.314 5.37258 18.9414 12 18.9414C18.6274 18.9414 24 24.314 24 30.9414C24 37.5688 18.6274 42.9414 12 42.9414ZM387.5 417.441C380.873 417.441 375.5 412.069 375.5 405.441C375.5 398.814 380.873 393.441 387.5 393.441C394.127 393.441 399.5 398.814 399.5 405.441C399.5 412.069 394.127 417.441 387.5 417.441Z" />
             <path fill="#5F54BC" opacity="0.72" d="M88.0403 20.05L218.54 169.55L200.46 185.333L69.9597 35.8327L88.0403 20.05ZM199.439 170.902L306.369 6.39368L316.43 12.9335L306.369 6.39368C313.899 -5.19191 331.88 -0.0207324 332.105 13.7954L332.105 13.7954L335.998 252.746L312.002 253.137L308.108 14.1864L320.107 13.9909L308.108 14.1865C308.269 24.0551 321.112 27.7488 326.491 19.4734L326.491 19.4734L219.561 183.981L199.439 170.902ZM221.499 177.271L224.905 417.674L212.907 417.844L224.905 417.673C224.765 407.783 211.885 404.078 206.511 412.382L206.511 412.382L313.926 246.421L334.074 259.462L226.659 425.422L216.585 418.902L226.659 425.422C219.135 437.047 201.104 431.86 200.908 418.014L200.908 418.014L197.501 177.611L221.499 177.271ZM333.04 245.05L463.54 394.55L445.46 410.333L314.96 260.833L333.04 245.05ZM79 39.9414C72.3726 39.9414 67 34.5688 67 27.9414C67 21.314 72.3726 15.9414 79 15.9414C85.6274 15.9414 91 21.314 91 27.9414C91 34.5688 85.6274 39.9414 79 39.9414ZM454.5 414.441C447.873 414.441 442.5 409.069 442.5 402.441C442.5 395.814 447.873 390.441 454.5 390.441C461.127 390.441 466.5 395.814 466.5 402.441C466.5 409.069 461.127 414.441 454.5 414.441Z" />
@@ -281,8 +353,8 @@
             <li><a href="/">HOME</a></li>
             <li><a href="/projects">PROJECTS</a></li>
             <li><a href="/members">MEMBERS</a></li>
-            <li class="active">ABOUT</li>
-            <li><a href="/contact">CONTACT</a></li>
+            <li><a href="/about">ABOUT</a></li>
+            <li class="active">CONTACT</li>
           </ul>
 
           <!-- <div class="connect-btn">
@@ -295,57 +367,39 @@
       <!-- 底部波纹背景 -->
       <svg id="wave-container" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" overflow="visible"></svg>
 
-      <!-- About 内容区 -->
-      <div class="about-wrapper">
-        <h1 class="page-title">OUR STORY</h1>
+      <!-- Contact 内容区 -->
+      <div class="contact-wrapper">
+        <h1 class="page-title">GET IN TOUCH</h1>
         
-        <div class="about-grid">
-          <!-- 介绍卡片 -->
-          <div class="about-card">
-            <div>
-              <h2 class="about-heading">关于毅阳工作室</h2>
-              <p class="about-text">
-                毅阳工作室（Yearnstudio）成立于2022年，是一个充满活力的云端技术工作室。我们由一群热爱技术、追求创新的开发者、设计师和创作者组成。
-                <br>
-                我们致力于在多个技术领域进行探索与研究，包括但不限于Scratch生态开发、云服务、AI应用以及开源工具。秉持着“开源公益”的精神，我们希望通过技术的力量，为社区创造价值。
-              </p>
-              <p class="about-text">
-                从最初的几个人的兴趣小组，到如今拥有多项成熟产品的成熟工作室，我们始终保持初心。在发展的道路上，我们不断吸收优秀的成员，完善我们的技术栈，提升服务质量。
-              </p>
-            </div>
-            
-            <div class="capabilities-list">
-              <span class="capability-tag">Web Development</span>
-              <span class="capability-tag">Branding & Identity</span>
-              <span class="capability-tag">Programs</span>
-            </div>
-          </div>
+        <div class="contact-grid">
 
-          <!-- 数据指标卡片 -->
-          <div class="about-card">
-            <div>
-              <h2 class="about-heading">核心优势</h2>
-              <p class="about-text" style="margin-bottom: 2rem;">
-                用数据和经验说话，我们以严谨的工程态度对待每一次创造
-              </p>
+          <!-- 联系信息 -->
+          <div class="contact-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <h2 class="info-heading">期待您的加入</h2>
+            
+            <div class="social-links">
+              <a href="https://space.bilibili.com/1128177448" target="_blank" class="social-icon" title="Bilibili">
+                <img src="https://cdn.simpleicons.org/bilibili/dark" id="bilibili-icon" width="28" height="28">
+              </a>
+              <a href="https://qm.qq.com/cgi-bin/qm/qr?k=2O7iqw_PwPDCa3UmIKgbB_bE0-vKLShS&amp;jump_from=webapi&amp;authKey=wf7amC4VLkzkyAK4Pu4No4LFpKpnD0H9hjSMM/tO1NgiMx0DOP3TE4fUC9UPwkuY" target="_blank" class="social-icon" title="QQ群">
+                <img src="https://cdn.simpleicons.org/qq/dark" id="qq-icon" width="28" height="28">
+              </a>
+              <a href="https://discord.gg/A8W4jHQf4a" target="_blank" class="social-icon" title="Discord群组">
+                <img src="https://cdn.simpleicons.org/discord/dark" id="discord-icon" width="28" height="28">
+              </a>
+              <a href="mailto:contact@yearn.studio" class="social-icon" title="官方邮箱">
+                <img src="https://cdn.simpleicons.org/minutemailer/dark" id="mail-icon" width="28" height="28">
+              </a>
+              <a href="https://github.com/YearnstudioHorizon" target="_blank" class="social-icon" title="GitHub">
+                <img src="https://cdn.simpleicons.org/github/dark" width="28" height="28">
+              </a>
             </div>
             
-            <div class="stats-grid">
-              <div class="stat-item">
-                <span class="stat-number">4+</span>
-                <span class="stat-label">Years Exp.</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number">10w+</span>
-                <span class="stat-label">Code Lines.</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number">10+</span>
-                <span class="stat-label">Project</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number">∞</span>
-                <span class="stat-label">Feature</span>
+            <div class="info-item">
+              <span class="info-label">Studio</span>
+              <div class="info-value" style="font-size: 0.95rem;">
+                Available for remote work & global projects.<br>
+                随时期待跨时区的线上协作。
               </div>
             </div>
           </div>

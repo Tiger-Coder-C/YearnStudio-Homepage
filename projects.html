@@ -1,590 +1,609 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
+<!doctype html>
+<html lang="zh-CN">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>项目 | 毅阳工作室</title>
-  <meta name="description" content="探索毅阳工作室Yearnstudio的各类项目 - 与我们共赴群星">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <style>
-    :root {
-      --bg-color: #000;
-      --text-color: #fff;
-      --nav-bg: rgba(0, 0, 0, 0.8);
-      --footer-bg: #1a1a1a;
-      --footer-text: #ccc;
-      --footer-h3: #fff;
-      --link-color: #fff;
-      --link-hover: #ccc;
-      --card-bg: #1a1a1a;
-      --accent-color: #007bff;
-      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      --image-bg: #222;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects | 毅阳工作室</title>
+    <meta name="description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星" />
+    <meta name="keywords" content="Yearnstudio, 毅阳工作室, Scratch, 云变量, 多人联机, ShangCloud" />
+    <meta name="author" content="Yearnstudio" />
 
-    .light-mode {
-      --bg-color: #fff;
-      --text-color: #000;
-      --nav-bg: rgba(255, 255, 255, 0.8);
-      --footer-bg: #f8f8f8;
-      --footer-text: #666;
-      --footer-h3: #333;
-      --link-color: #000;
-      --link-hover: #555;
-      --card-bg: #f0f0f0;
-      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      --image-bg: #eee;
-    }
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yearn.studio/projects.html" />
+    <meta property="og:title" content="Projects | 毅阳工作室" />
+    <meta property="og:description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星" />
+    <meta property="og:image" content="https://yearn.studio/logo.svg" />
 
-    body {
-      margin: 0;
-      font-family: "DengXian", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-      transition: background 0.3s, color 0.3s;
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://yearn.studio/projects.html" />
+    <meta property="twitter:title" content="Projects | 毅阳工作室" />
+    <meta property="twitter:description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星" />
+    <meta property="twitter:image" content="https://yearn.studio/logo.svg" />
 
-    /* 导航栏 */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background: var(--nav-bg);
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-      box-sizing: border-box;
-    }
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-    .nav-title {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,500;1,300&family=Noto+Serif+SC:wght@400;700;900&display=swap"
+        rel="stylesheet" />
 
-    .nav-logo {
-      width: 32px;
-      height: 32px;
-    }
+    <style>
+        :root {
+            --navy: #11143c;
+            --ink: #171743;
+            --pearl-white: #f7f7fb;
+            --pure-white: #ffffff;
+            --lavender: #b7b3eb;
+            --soft-lavender: #d9d7f4;
+            --violet: #5f54bc;
+            --gray: #53586f;
+            --light-gray: #a4abc4;
+        }
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .nav-links a {
-      color: var(--link-color);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s;
-    }
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--pearl-white);
+            font-family: "Montserrat", sans-serif;
+        }
 
-    .nav-links a:hover {
-      color: var(--link-hover);
-    }
+        body {
+            color: var(--navy);
+        }
 
-    .theme-toggle {
-      background: none;
-      border: 1px solid var(--text-color);
-      color: var(--text-color);
-      padding: 4px 12px;
-      cursor: pointer;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      transition: all 0.3s;
-    }
+        /* 背景样式完全保留 */
+        .hero-section {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 52% 116%,
+                    rgba(95, 84, 188, 0.22) 0%,
+                    rgba(178, 177, 232, 0.12) 24%,
+                    rgba(248, 249, 252, 0) 62%),
+                linear-gradient(135deg, #fbfbfd 0%, #f5f5fa 50%, #fafafe 100%);
+        }
 
-    .theme-toggle:hover {
-      background: var(--text-color);
-      color: var(--bg-color);
-    }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            inset: -20%;
+            background:
+                radial-gradient(circle at 18% 12%,
+                    rgba(255, 255, 255, 0.95) 0%,
+                    rgba(255, 255, 255, 0) 28%),
+                radial-gradient(circle at 80% 8%,
+                    rgba(255, 255, 255, 0.8) 0%,
+                    rgba(255, 255, 255, 0) 32%);
+            z-index: 0;
+            pointer-events: none;
+        }
 
-    /* 内容区域 */
-    .container {
-      max-width: 1000px;
-      margin: 100px auto 60px;
-      padding: 0 20px;
-      flex: 1;
-    }
+        /* 背景斜向玻璃光带 */
+        .glass-beam {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            transform-origin: center;
+            border-radius: 28px;
+            mix-blend-mode: multiply;
+        }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-align: center;
-    }
+        .beam-main-left {
+            width: 42vw;
+            height: 70px;
+            left: 23vw;
+            top: 19vh;
+            transform: rotate(46deg);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.55) 18%, rgba(173, 170, 230, 0.3) 42%, rgba(88, 78, 176, 0.88) 68%, rgba(255, 255, 255, 0.28) 100%);
+            box-shadow: 18px 18px 38px rgba(74, 63, 158, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.58), inset 0 16px 24px rgba(255, 255, 255, 0.38);
+        }
 
-    .subtitle {
-      text-align: center;
-      opacity: 0.7;
-      margin-bottom: 50px;
-      font-size: 1.1rem;
-    }
+        .beam-main-left::after {
+            content: "";
+            position: absolute;
+            inset: 8px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            border-left-color: rgba(115, 103, 200, 0.26);
+            border-bottom-color: rgba(95, 84, 188, 0.18);
+        }
 
-    /* 项目网格 */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 30px;
-    }
+        .beam-left-thin-1,
+        .beam-left-thin-2 {
+            width: 42vw;
+            height: 1px;
+            left: 22vw;
+            top: 18vh;
+            transform: rotate(46deg);
+            background: rgba(95, 84, 188, 0.22);
+        }
 
-    .project-card {
-      background: var(--card-bg);
-      border-radius: 15px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--card-shadow);
-    }
+        .beam-left-thin-2 {
+            top: 20.3vh;
+            left: 21.2vw;
+            opacity: 0.45;
+        }
 
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    }
+        .beam-right-wide {
+            width: 34vw;
+            height: 76px;
+            right: 18vw;
+            top: 20vh;
+            transform: rotate(-44deg);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.72), rgba(208, 206, 242, 0.32) 45%, rgba(150, 145, 221, 0.22) 100%);
+            box-shadow: 16px 18px 38px rgba(95, 84, 188, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.66), inset 0 16px 25px rgba(255, 255, 255, 0.5);
+        }
 
-    .project-image {
-      width: 100%;
-      height: 180px;
-      background: var(--image-bg);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      box-sizing: border-box;
-      transition: background 0.3s;
-    }
+        .beam-right-thin-1,
+        .beam-right-thin-2,
+        .beam-right-thin-3 {
+            width: 37vw;
+            height: 1px;
+            right: 9vw;
+            top: 20vh;
+            transform: rotate(-44deg);
+            background: rgba(95, 84, 188, 0.16);
+        }
 
-    .project-image img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
+        .beam-right-thin-2 {
+            top: 22.4vh;
+            right: 8vw;
+            opacity: 0.6;
+        }
 
-    .project-info {
-      padding: 25px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
+        .beam-right-thin-3 {
+            top: 24.7vh;
+            right: 7vw;
+            opacity: 0.35;
+        }
 
-    .project-info h2 {
-      margin: 0 0 15px 0;
-      font-size: 1.5rem;
-      color: var(--accent-color);
-    }
+        #wave-container {
+            position: absolute;
+            bottom: -3vh;
+            left: 0;
+            width: 100vw;
+            height: 58vh;
+            z-index: 2;
+            pointer-events: none;
+            overflow: visible;
+        }
 
-    .project-info p {
-      margin: 0 0 20px 0;
-      font-size: 0.95rem;
-      opacity: 0.8;
-      flex: 1;
-    }
+        /* ==== 顶部导航 (完全复刻) ==== */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.1rem 4.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 20;
+        }
 
-    .project-links {
-      display: flex;
-      gap: 15px;
-    }
+        .mini-logo svg {
+            width: 42px;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 8px 14px rgba(95, 84, 188, 0.12));
+            cursor: pointer;
+        }
 
-    .project-btn {
-      display: inline-block;
-      padding: 8px 20px;
-      background: var(--accent-color);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 0.9rem;
-      transition: background 0.3s;
-    }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 3.9rem;
+        }
 
-    .project-btn:hover {
-      background: #0056b3;
-    }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3.35rem;
+        }
 
-    .project-btn.secondary {
-      background: transparent;
-      border: 1px solid var(--accent-color);
-      color: var(--accent-color);
-    }
+        .nav-menu li {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            color: var(--navy);
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+        }
 
-    .project-btn.secondary:hover {
-      background: var(--accent-color);
-      color: #fff;
-    }
+        .nav-menu a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    /* 页脚 */
-    .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      padding: 40px;
-      background-color: var(--footer-bg);
-      gap: 30px;
-    }
+        .nav-menu li.active::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background-color: var(--violet);
+            border-radius: 50%;
+        }
 
-    .footer-column {
-      flex: 1;
-      min-width: 150px;
-    }
+        .connect-btn {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+            border: 1px solid rgba(17, 20, 60, 0.2);
+            border-radius: 999px;
+            padding: 0.72rem 1.4rem;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: var(--navy);
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.36);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
 
-    .footer-column h3 {
-      font-size: 16px;
-      margin-bottom: 15px;
-      color: var(--footer-h3);
-    }
+        .connect-btn:hover {
+            border-color: rgba(17, 20, 60, 0.55);
+            background: rgba(255, 255, 255, 0.8);
+        }
 
-    .footer-column ul {
-      list-style: none;
-      padding: 0;
-    }
+        .connect-btn .ring-icon {
+            width: 10px;
+            height: 10px;
+            border: 1px solid var(--navy);
+            border-radius: 50%;
+            position: relative;
+        }
 
-    .footer-column li {
-      margin-bottom: 8px;
-    }
+        .connect-btn .ring-icon::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 3px;
+            height: 3px;
+            transform: translate(-50%, -50%);
+            background: var(--navy);
+            border-radius: 50%;
+        }
 
-    .footer-column a {
-      color: var(--footer-text);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+        /* ==== Projects 内容区样式 ==== */
+        .projects-wrapper {
+            position: absolute;
+            top: 18vh;
+            left: 8.6vw;
+            right: 8.6vw;
+            bottom: 8vh;
+            z-index: 10;
+            overflow-y: auto;
+            padding-bottom: 4rem;
+            /* 隐藏滚动条但允许滚动 */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
 
-    .footer-column a:hover {
-      color: var(--link-hover);
-    }
+        .projects-wrapper::-webkit-scrollbar {
+            display: none;
+        }
 
-    .footer-brand-social {
-      flex: 2;
-      min-width: 250px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      text-align: right;
-    }
+        .page-title {
+            font-family: "Montserrat", sans-serif;
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            color: var(--navy);
+            margin-bottom: 3rem;
+            text-shadow: 0 10px 22px rgba(17, 20, 60, 0.05);
+        }
 
-    .brand-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
 
-    .footer-logo-img {
-      width: 36px;
-      height: 36px;
-    }
+        .project-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 16px 32px rgba(95, 84, 188, 0.05);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .brand-name {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--footer-h3);
-    }
+        .project-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
 
-    .copyright {
-      font-size: 0.75rem;
-      color: var(--footer-text);
-    }
+        .project-card:hover {
+            /* transform: translateY(-8px); */
+            background: rgba(255, 255, 255, 0.65);
+            box-shadow: 0 20px 40px rgba(95, 84, 188, 0.1);
+            border-color: rgba(255, 255, 255, 0.9);
+        }
 
-    .social-links {
-      display: flex;
-      gap: 18px;
-    }
+        .project-card:hover::before {
+            opacity: 1;
+        }
 
-    .social-icon {
-      width: 28px;
-      height: 28px;
-      transition: filter 0.3s;
-      opacity: 0.7;
-      transition: opacity 0.3s;
-    }
+        .project-year {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--violet);
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            display: block;
+        }
 
-    .social-icon:hover {
-      opacity: 1;
-    }
+        .project-name {
+            font-family: "Noto Serif SC", serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
 
-    .social-icon img {
-      width: 100%;
-      height: 100%;
-    }
+        .project-desc {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
 
-    #bilibili-icon,
-    #qq-icon,
-    #discord-icon,
-    #mail-icon {
-      filter: none !important;
-    }
+        .project-tags {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
 
-    /* 确保GitHub图标的滤镜也被移除 */
-    #github-icon {
-      filter: none !important;
-    }
+        .tag {
+            font-size: 0.65rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 99px;
+            border: 1px solid rgba(95, 84, 188, 0.2);
+            color: var(--violet);
+            letter-spacing: 0.05em;
+            background: rgba(255, 255, 255, 0.5);
+        }
 
-    /* 移除之前为所有social-icon img设置的滤镜，因为现在是动态加载 */
-    .light-mode .social-links .social-icon img {
-      filter: none;
-    }
+        @media (max-width: 980px) {
+            header {
+                padding: 1.6rem 1.5rem;
+            }
 
-    .light-mode .social-links .social-icon img {
-      filter: brightness(0);
-    }
+            .nav-container {
+                display: none;
+            }
 
-    body:not(.light-mode) .social-links .social-icon img {
-      filter: brightness(0) invert(1);
-    }
+            .projects-wrapper {
+                top: 12vh;
+                left: 5vw;
+                right: 5vw;
+            }
 
-    /* 汉堡菜单 */
-    .burger-menu {
-      display: none;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 25px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    }
-
-    .burger-menu .bar {
-      width: 100%;
-      height: 3px;
-      background-color: var(--text-color);
-      border-radius: 10px;
-    }
-
-    @media screen and (max-width: 768px) {
-      .burger-menu {
-        display: flex;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: var(--nav-bg);
-        padding: 20px 0;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .footer-container {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .footer-brand-social {
-        align-items: center;
-        text-align: center;
-      }
-
-      .brand-info {
-        justify-content: center;
-      }
-
-      .social-links {
-        justify-content: center;
-      }
-    }
-  </style>
+            .page-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <nav class="navbar">
-    <a href="/" class="nav-title">
-      <img src="/logo.svg" alt="logo" class="nav-logo">
-    </a>
-    <button class="burger-menu" id="burgerMenu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-    <div class="nav-links">
-      <a href="/">首页</a>
-      <a href="/projects">项目</a>
-      <a href="/about">关于</a>
-      <a href="/join">招纳贤才</a>
-      <button class="theme-toggle" id="themeToggle">显示模式</button>
+    <div class="hero-section">
+        <!-- 玻璃光带 -->
+        <div class="glass-beam beam-main-left"></div>
+        <div class="glass-beam beam-left-thin-1"></div>
+        <div class="glass-beam beam-left-thin-2"></div>
+        <div class="glass-beam beam-right-wide"></div>
+        <div class="glass-beam beam-right-thin-1"></div>
+        <div class="glass-beam beam-right-thin-2"></div>
+        <div class="glass-beam beam-right-thin-3"></div>
+
+        <!-- 顶部导航 -->
+        <header>
+            <div class="mini-logo" onclick="window.location.href='index.html'">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 466.5 435" fill="none">
+                    <path fill="#11143C"
+                        d="M21.0403 23.05L151.54 172.55L133.46 188.333L2.95972 38.8327L21.0403 23.05ZM132.439 173.902L239.369 9.39368L249.43 15.9335L239.369 9.39368C246.899 -2.19191 264.88 2.97927 265.105 16.7954L265.105 16.7954L268.998 255.746L245.002 256.137L241.108 17.1864L253.107 16.9909L241.108 17.1865C241.269 27.0551 254.112 30.7488 259.491 22.4734L259.491 22.4734L152.561 186.981L132.439 173.902ZM154.499 180.271L157.905 420.674L145.907 420.844L157.905 420.673C157.765 410.783 144.885 407.078 139.511 415.382L139.511 415.382L246.926 249.421L267.074 262.462L159.659 428.422L149.585 421.902L159.659 428.422C152.135 440.047 134.104 434.86 133.908 421.014L133.908 421.014L130.501 180.611L154.499 180.271ZM266.04 248.05L396.54 397.55L378.46 413.333L247.96 263.833L266.04 248.05ZM12 42.9414C5.37258 42.9414 0 37.5688 0 30.9414C0 24.314 5.37258 18.9414 12 18.9414C18.6274 18.9414 24 24.314 24 30.9414C24 37.5688 18.6274 42.9414 12 42.9414ZM387.5 417.441C380.873 417.441 375.5 412.069 375.5 405.441C375.5 398.814 380.873 393.441 387.5 393.441C394.127 393.441 399.5 398.814 399.5 405.441C399.5 412.069 394.127 417.441 387.5 417.441Z" />
+                    <path fill="#5F54BC" opacity="0.72"
+                        d="M88.0403 20.05L218.54 169.55L200.46 185.333L69.9597 35.8327L88.0403 20.05ZM199.439 170.902L306.369 6.39368L316.43 12.9335L306.369 6.39368C313.899 -5.19191 331.88 -0.0207324 332.105 13.7954L332.105 13.7954L335.998 252.746L312.002 253.137L308.108 14.1864L320.107 13.9909L308.108 14.1865C308.269 24.0551 321.112 27.7488 326.491 19.4734L326.491 19.4734L219.561 183.981L199.439 170.902ZM221.499 177.271L224.905 417.674L212.907 417.844L224.905 417.673C224.765 407.783 211.885 404.078 206.511 412.382L206.511 412.382L313.926 246.421L334.074 259.462L226.659 425.422L216.585 418.902L226.659 425.422C219.135 437.047 201.104 431.86 200.908 418.014L200.908 418.014L197.501 177.611L221.499 177.271ZM333.04 245.05L463.54 394.55L445.46 410.333L314.96 260.833L333.04 245.05ZM79 39.9414C72.3726 39.9414 67 34.5688 67 27.9414C67 21.314 72.3726 15.9414 79 15.9414C85.6274 15.9414 91 21.314 91 27.9414C91 34.5688 85.6274 39.9414 79 39.9414ZM454.5 414.441C447.873 414.441 442.5 409.069 442.5 402.441C442.5 395.814 447.873 390.441 454.5 390.441C461.127 390.441 466.5 395.814 466.5 402.441C466.5 409.069 461.127 414.441 454.5 414.441Z" />
+                </svg>
+            </div>
+
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li><a href="/">HOME</a></li>
+                    <li class="active">PROJECTS</li>
+                    <li><a href="/members">MEMBERS</a></li>
+                    <li><a href="/about">ABOUT</a></li>
+                    <li><a href="/contact">CONTACT</a></li>
+                </ul>
+
+                <!-- <div class="connect-btn">
+                    LET'S CONNECT
+                    <div class="ring-icon"></div>
+                </div> -->
+            </div>
+        </header>
+
+        <!-- 底部波纹背景 -->
+        <svg id="wave-container" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" overflow="visible"></svg>
+
+        <!-- 项目列表内容区 -->
+        <div class="projects-wrapper">
+            <h1 class="page-title">SELECTED WORKS</h1>
+
+            <div class="projects-grid" id="project-cards">
+            </div>
+        </div>
     </div>
-  </nav>
 
-  <div class="container">
-    <h1>我们的项目</h1>
-    <p class="subtitle">打造高质量技术产品</p>
+    <script>
+        const projects = [{
+            title: "ShangCloud",
+            desc: "全新设计的全公益云变量存储、多人联机服务提供平台。为创作者提供稳定、高效的联机解决方案。",
+            tags: ["Cloud", "Web APP", "Turbowarp"],
+            url: "https://api.yearnstudio.cn"
+        },
+        {
+            title: "小盒子社区",
+            desc: "新一代Scratch社区。致力于为Scratch爱好者提供一个纯净、自由的交流与分享空间。",
+            tags: ["Community", "Scratch"],
+            url: "https://sbox.yearnstudio.cn/"
+        },
+        {
+            title: "Scratch社区卡片",
+            desc: "为你的 GitHub Profile 或个人网站生成精美的 Scratch 社区数据统计卡片。",
+            tags: ["Community", "Scratch", "README"],
+            url: "https://github.com/YearnstudioYangyi/scratch-readme-stats"
+        },
+        {
+            title: "AxtFrame",
+            desc: "全新的基于AST抽象语法树的Turbowarp扩展开发框架",
+            tags: ["Community", "Scratch"],
+            url: "https://github.com/YearnstudioHorizon/AxtFrame"
+        },
+        {
+            title: "星野梦代",
+            desc: "QQ入群邮箱验证承担，第三方/官方混合QQ机器人",
+            tags: ["QQ", "Email"],
+            url: "#"
+        },
+        {
+            title: "星火工具箱",
+            desc: "一个基于Wails+Vue的聚合系统工具与功能管理的桌面应用",
+            tags: ["Deving", "Desktop", "Windows"],
+            url: "#"
+        }]
 
-    <div class="projects-grid">
-      <!-- ShangCloud -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="/images/shangcloud.svg" alt="ShangCloud">
-        </div>
-        <div class="project-info">
-          <h2>ShangCloud</h2>
-          <p>全新设计的全公益Scratch云变量存储、多人联机服务提供平台。为创作者提供稳定、高效的联机解决方案。</p>
-          <div class="project-links">
-            <a href="https://api.yearnstudio.cn" class="project-btn" target="_blank">访问项目</a>
-            <a href="https://doc.yearnstudio.cn" class="project-btn" target="_blank">文档地址</a>
-          </div>
-        </div>
-      </div>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 插入作品卡片
+            const cards = document.getElementById("project-cards")
+            cards.innerHTML = ""
+            projects.forEach(element => {
+                let tags = ""
+                element.tags.forEach(tag => {
+                    tags += `<span class="tag">${tag}</span>`
+                });
+                cards.innerHTML += `<a href="${element.url}" style="text-decoration: none; color: inherit; display: block;">
+            <div class="project-card" >
+            <h2 class="project-name">${element.title}</h2>
+            <p class="project-desc">${element.desc}</p>
+            <div class="project-tags">
+                ${tags}
+            </div>
+          </div>`
+            });
 
-      <!-- 小盒子社区 -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="/logo.svg" alt="小盒子社区">
-        </div>
-        <div class="project-info">
-          <h2>小盒子社区</h2>
-          <p>新一代Scratch社区。致力于为Scratch爱好者提供一个纯净、自由的交流与分享空间。</p>
-          <div class="project-links">
-            <a href="https://sbox.yearnstudio.cn" class="project-btn" target="_blank">访问项目</a>
-          </div>
-        </div>
-      </div>
+            const svgns = "http://www.w3.org/2000/svg";
+            const container = document.getElementById("wave-container");
 
-      <!-- Scratch社区卡片 -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="https://screadme.yearnstudio.cn/?code=858&username=阳毅" alt="Scratch社区卡片">
-        </div>
-        <div class="project-info">
-          <h2>Scratch社区卡片</h2>
-          <p>为你的 GitHub Profile 或个人网站生成精美的 Scratch 社区数据统计卡片。</p>
-          <div class="project-links">
-            <a href="https://github.com/YearnstudioYangyi/scratch-readme-stats" class="project-btn"
-              target="_blank">GitHub</a>
-          </div>
-        </div>
-      </div>
+            function buildWaves() {
+                container.innerHTML = "";
+                const W = window.innerWidth;
+                const H = window.innerHeight * 0.58;
+                container.setAttribute("viewBox", `0 0 ${W} ${H}`);
 
-      <!-- 云黑名单 -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="/images/cloudblack.svg" alt="云黑名单" width="150" height="150">
-        </div>
-        <div class="project-info">
-          <h2>云黑名单</h2>
-          <p>维护社区环境，提供云端黑名单查询服务，助力开发者构建更安全的社区生态。</p>
-          <div class="project-links">
-            <a href="https://black.yearnstudio.cn" class="project-btn" target="_blank">访问项目</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                const defs = document.createElementNS(svgns, "defs");
+                const glow = document.createElementNS(svgns, "filter");
+                glow.setAttribute("id", "waveGlow");
+                glow.setAttribute("x", "-10%"); glow.setAttribute("y", "-40%");
+                glow.setAttribute("width", "120%"); glow.setAttribute("height", "180%");
 
-  <footer class="footer-container">
-    <div class="footer-column">
-      <h3>导航</h3>
-      <ul>
-        <li><a href="/">返回主页</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h3>支持</h3>
-      <ul>
-        <li><a href="/about">关于我们</a></li>
-        <li><a href="/join">招纳贤才</a></li>
-        <li><a href="/moments">风采展示</a></li>
-      </ul>
-    </div>
-    <div class="footer-column footer-brand-social">
-      <div class="brand-info">
-        <img src="/logo.svg" alt="Yearnstudio Logo" class="footer-logo-img">
-        <div>
-          <span class="brand-name">Yearnstudio</span><br>
-          <span class="copyright">All rights reversed © 2022-<span id="currentYear"></span></span>
-        </div>
-      </div>
-      <div class="social-links">
-        <a href="https://space.bilibili.com/1128177448" class="social-icon" title="Bilibili">
-          <img src="" id="bilibili-icon" width="32" height="32">
-        </a>
-        <a href="https://qm.qq.com/cgi-bin/qm/qr?k=2O7iqw_PwPDCa3UmIKgbB_bE0-vKLShS&jump_from=webapi&authKey=wf7amC4VLkzkyAK4Pu4No4LFpKpnD0H9hjSMM/tO1NgiMx0DOP3TE4fUC9UPwkuY"
-          class="social-icon" title="QQ群">
-          <img src="" id="qq-icon" width="32" height="32">
-        </a>
-        <a href="https://discord.gg/A8W4jHQf4a" class="social-icon" title="Discord群组">
-          <img src="" id="discord-icon" width="32" height="32">
-        </a>
-        <a href="mailto:contact@yearn.studio" class="social-icon" title="官方邮箱">
-          <img src="" id="mail-icon" width="32" height="32">
-        </a>
-        <a href="https://github.com/YearnstudioHorizon" class="social-icon" title="GitHub">
-          <img src="" data-src="/images/github.svg" width="32" height="32" class="lazy-load">
-        </a>
-      </div>
-    </div>
-    </div>
-  </footer>
+                const blur = document.createElementNS(svgns, "feGaussianBlur");
+                blur.setAttribute("stdDeviation", "2.5");
+                blur.setAttribute("result", "blur");
 
-  <script>
-    // 主题切换
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
+                const merge = document.createElementNS(svgns, "feMerge");
+                const m1 = document.createElementNS(svgns, "feMergeNode");
+                m1.setAttribute("in", "blur");
+                const m2 = document.createElementNS(svgns, "feMergeNode");
+                m2.setAttribute("in", "SourceGraphic");
 
-    function applyTheme(theme) {
-      if (theme === 'light') {
-        body.classList.add('light-mode');
-        themeToggle.textContent = '暗色模式';
-        document.getElementById('bilibili-icon').src = 'https://cdn.simpleicons.org/bilibili/dark';
-        document.getElementById('qq-icon').src = 'https://cdn.simpleicons.org/qq/dark';
-        document.getElementById('discord-icon').src = 'https://cdn.simpleicons.org/discord/dark';
-        document.getElementById('mail-icon').src = 'https://cdn.simpleicons.org/mail.ru/dark';
-        const githubIcon = document.getElementById('github-icon');
-        if (githubIcon) {
-          githubIcon.src = 'https://cdn.simpleicons.org/github/dark';
-        }
-      } else {
-        body.classList.remove('light-mode');
-        themeToggle.textContent = '亮色模式';
-        document.getElementById('bilibili-icon').src = 'https://cdn.simpleicons.org/bilibili/white';
-        document.getElementById('qq-icon').src = 'https://cdn.simpleicons.org/qq/white';
-        document.getElementById('discord-icon').src = 'https://cdn.simpleicons.org/discord/white';
-        document.getElementById('mail-icon').src = 'https://cdn.simpleicons.org/mail.ru/white';
-        const githubIcon = document.getElementById('github-icon');
-        if (githubIcon) {
-          githubIcon.src = 'https://cdn.simpleicons.org/github/white';
-        }
-      }
-    }
+                merge.appendChild(m1); merge.appendChild(m2); glow.appendChild(blur); glow.appendChild(merge);
+                defs.appendChild(glow); container.appendChild(defs);
 
-    // 页面加载时，根据 localStorage 或系统偏好设置主题
-    const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    applyTheme(storedTheme);
+                function spline(pts) {
+                    let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+                    for (let i = 0; i < pts.length - 1; i++) {
+                        const p0 = pts[Math.max(0, i - 1)]; const p1 = pts[i]; const p2 = pts[i + 1]; const p3 = pts[Math.min(pts.length - 1, i + 2)];
+                        const c1x = p1[0] + (p2[0] - p0[0]) / 6; const c1y = p1[1] + (p2[1] - p0[1]) / 6;
+                        const c2x = p2[0] - (p3[0] - p1[0]) / 6; const c2y = p2[1] - (p3[1] - p1[1]) / 6;
+                        d += ` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+                    }
+                    return d;
+                }
 
-    themeToggle.addEventListener('click', () => {
-      const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
-      localStorage.setItem('theme', newTheme);
-      applyTheme(newTheme);
-    });
+                const NUM = 104; const S = 150;
+                for (let i = 0; i < NUM; i++) {
+                    const t = i / (NUM - 1);
+                    const baseY = H * (1.02 - t * 0.54);
+                    const amp = H * (0.09 + Math.pow(t, 1.35) * 0.34);
+                    const cx1 = W * 0.41; const s1 = W * 0.115;
+                    const cx2 = W * 0.72; const s2 = W * 0.105;
+                    const valley = W * 0.56; const valleyS = W * 0.09;
+                    const pts = [];
 
-    // 汉堡菜单
-    const burgerMenu = document.getElementById('burgerMenu');
-    const navLinks = document.querySelector('.nav-links');
-    burgerMenu.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
+                    for (let j = 0; j <= S; j++) {
+                        const x = -80 + (j * (W + 160)) / S;
+                        const g1 = Math.exp(-0.5 * ((x - cx1) / s1) ** 2);
+                        const g2 = Math.exp(-0.5 * ((x - cx2) / s2) ** 2);
+                        const gv = Math.exp(-0.5 * ((x - valley) / valleyS) ** 2);
+                        const leftDip = Math.exp(-0.5 * ((x - W * 0.15) / (W * 0.11)) ** 2) * H * 0.12 * (0.2 + t);
+                        const micro = Math.sin(x * 0.0065 + t * 5.4) * (1.6 + t * 5.2) + Math.sin(x * 0.012 - t * 4.1) * (0.7 + t * 3.1);
+                        const y = baseY - amp * (g1 * 1.1 + g2 * 0.9) + amp * gv * 0.46 + leftDip + micro;
+                        pts.push([x, y]);
+                    }
 
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-  </script>
+                    const path = document.createElementNS(svgns, "path");
+                    path.setAttribute("d", spline(pts)); path.setAttribute("fill", "none");
+                    path.setAttribute("stroke", `rgba(95,84,188,${(0.045 + t * 0.33).toFixed(3)})`);
+                    path.setAttribute("stroke-width", t > 0.72 ? "1.15" : "0.85");
+                    if (i > 78) path.setAttribute("filter", "url(#waveGlow)");
+                    container.appendChild(path);
+                }
+            }
+            buildWaves();
+            let timer;
+            window.addEventListener("resize", () => {
+                clearTimeout(timer); timer = setTimeout(buildWaves, 160);
+            });
+        });
+    </script>
 </body>
 
 </html>

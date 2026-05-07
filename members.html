@@ -3,22 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About | 毅阳工作室</title>
+    <title>Members | 毅阳工作室</title>
     <meta name="description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星" />
     <meta name="keywords" content="Yearnstudio, 毅阳工作室, Scratch, 云变量, 多人联机, ShangCloud" />
     <meta name="author" content="Yearnstudio" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yearn.studio/about.html" />
-    <meta property="og:title" content="About | 毅阳工作室" />
+    <meta property="og:url" content="https://yearn.studio/members.html" />
+    <meta property="og:title" content="Members | 毅阳工作室" />
     <meta property="og:description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星" />
     <meta property="og:image" content="https://yearn.studio/logo.svg" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://yearn.studio/about.html" />
-    <meta property="twitter:title" content="About | 毅阳工作室" />
+    <meta property="twitter:url" content="https://yearn.studio/members.html" />
+    <meta property="twitter:title" content="Members | 毅阳工作室" />
     <meta property="twitter:description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星" />
     <meta property="twitter:image" content="https://yearn.studio/logo.svg" />
 
@@ -53,7 +53,8 @@
         box-sizing: border-box;
       }
 
-      body, html {
+      body,
+      html {
         width: 100%;
         height: 100%;
         overflow: hidden;
@@ -72,7 +73,12 @@
         height: 100vh;
         overflow: hidden;
         background:
-          radial-gradient(circle at 52% 116%, rgba(95, 84, 188, 0.22) 0%, rgba(178, 177, 232, 0.12) 24%, rgba(248, 249, 252, 0) 62%),
+          radial-gradient(
+            circle at 52% 116%,
+            rgba(95, 84, 188, 0.22) 0%,
+            rgba(178, 177, 232, 0.12) 24%,
+            rgba(248, 249, 252, 0) 62%
+          ),
           linear-gradient(135deg, #fbfbfd 0%, #f5f5fa 50%, #fafafe 100%);
       }
 
@@ -81,8 +87,16 @@
         position: absolute;
         inset: -20%;
         background:
-          radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 28%),
-          radial-gradient(circle at 80% 8%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 32%);
+          radial-gradient(
+            circle at 18% 12%,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0) 28%
+          ),
+          radial-gradient(
+            circle at 80% 8%,
+            rgba(255, 255, 255, 0.8) 0%,
+            rgba(255, 255, 255, 0) 32%
+          );
         z-index: 0;
         pointer-events: none;
       }
@@ -123,7 +137,7 @@
       }
       .nav-container { display: flex; align-items: center; gap: 3.9rem; }
       .nav-menu { display: flex; list-style: none; gap: 3.35rem; }
-      .nav-menu li { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; color: var(--navy); cursor: pointer; position: relative; }
+      .nav-menu li { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; color: var(--navy); cursor: pointer; position: relative; text-decoration: none; }
       .nav-menu a { color: inherit; text-decoration: none; }
       .nav-menu li.active::after {
         content: ""; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; background-color: var(--violet); border-radius: 50%;
@@ -135,8 +149,8 @@
       .connect-btn .ring-icon { width: 10px; height: 10px; border: 1px solid var(--navy); border-radius: 50%; position: relative; }
       .connect-btn .ring-icon::after { content: ""; position: absolute; top: 50%; left: 50%; width: 3px; height: 3px; transform: translate(-50%, -50%); background: var(--navy); border-radius: 50%; }
 
-      /* ==== About 内容区样式 ==== */
-      .about-wrapper {
+      /* Members 内容区样式 */
+      .members-wrapper {
         position: absolute;
         top: 18vh;
         left: 8.6vw;
@@ -145,11 +159,11 @@
         z-index: 10;
         overflow-y: auto;
         padding-bottom: 4rem;
-        scrollbar-width: none; 
+        scrollbar-width: none;
         -ms-overflow-style: none;
       }
-      
-      .about-wrapper::-webkit-scrollbar {
+
+      .members-wrapper::-webkit-scrollbar {
         display: none;
       }
 
@@ -163,95 +177,93 @@
         text-shadow: 0 10px 22px rgba(17, 20, 60, 0.05);
       }
 
-      .about-grid {
+      .members-grid {
         display: grid;
-        grid-template-columns: 1.6fr 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         gap: 2.5rem;
       }
 
-      .about-card {
+      .member-card {
         background: rgba(255, 255, 255, 0.45);
         backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.6);
         border-radius: 24px;
-        padding: 3rem 3.5rem;
+        padding: 2.5rem 1.5rem;
         box-shadow: 0 16px 32px rgba(95, 84, 188, 0.05);
+        transition: all 0.4s ease;
+        cursor: pointer;
         position: relative;
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        height: 100%;
       }
 
-      .about-heading {
+      .member-card::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+      }
+
+      .member-card:hover {
+        background: rgba(255, 255, 255, 0.65);
+        box-shadow: 0 20px 40px rgba(95, 84, 188, 0.1);
+        border-color: rgba(255, 255, 255, 0.9);
+        transform: translateY(-6px);
+      }
+
+      .member-card:hover::before {
+        opacity: 1;
+      }
+
+      .member-avatar {
+        width: 86px;
+        height: 86px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1.2rem;
+        border: 3px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 8px 18px rgba(95, 84, 188, 0.12);
+        position: relative;
+        z-index: 1;
+        transition: transform 0.4s ease;
+      }
+      
+      .member-card:hover .member-avatar {
+        transform: scale(1.05);
+      }
+
+      .member-name {
         font-family: "Noto Serif SC", serif;
-        font-size: 1.8rem;
+        font-size: 1.35rem;
         font-weight: 700;
         color: var(--navy);
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.6rem;
+        position: relative;
+        z-index: 1;
       }
 
-      .about-text {
-        font-size: 0.95rem;
-        font-weight: 300;
-        color: var(--gray);
-        line-height: 1.9;
-        margin-bottom: 1rem;
-      }
-
-      .capabilities-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-top: 2.5rem;
-      }
-
-      .capability-tag {
+      .member-role {
         font-size: 0.75rem;
-        padding: 0.6rem 1.2rem;
-        border-radius: 99px;
-        border: 1px solid rgba(95, 84, 188, 0.25);
+        font-weight: 600;
         color: var(--violet);
+        opacity: 0.9;
         letter-spacing: 0.08em;
-        background: rgba(255, 255, 255, 0.6);
-      }
-
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2.5rem 1.5rem;
-        margin-top: 1rem;
-      }
-
-      .stat-item {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .stat-number {
-        font-size: 3.2rem;
-        font-weight: 200;
-        color: var(--violet);
-        font-family: "Montserrat", sans-serif;
-        line-height: 1;
-      }
-
-      .stat-label {
-        font-size: 0.75rem;
-        font-weight: 500;
-        color: var(--navy);
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
+        position: relative;
+        z-index: 1;
       }
 
       @media (max-width: 980px) {
         header { padding: 1.6rem 1.5rem; }
         .nav-container { display: none; }
-        .about-wrapper { top: 12vh; left: 5vw; right: 5vw; }
+        .members-wrapper { top: 12vh; left: 5vw; right: 5vw; }
         .page-title { font-size: 2.2rem; }
-        .about-grid { grid-template-columns: 1fr; }
-        .about-card { padding: 2.5rem 2rem; }
       }
     </style>
   </head>
@@ -280,81 +292,105 @@
           <ul class="nav-menu">
             <li><a href="/">HOME</a></li>
             <li><a href="/projects">PROJECTS</a></li>
-            <li><a href="/members">MEMBERS</a></li>
-            <li class="active">ABOUT</li>
+            <li class="active">MEMBERS</li>
+            <li><a href="/about">ABOUT</a></li>
             <li><a href="/contact">CONTACT</a></li>
           </ul>
-
-          <!-- <div class="connect-btn">
-            LET'S CONNECT
-            <div class="ring-icon"></div>
-          </div> -->
         </div>
       </header>
 
       <!-- 底部波纹背景 -->
       <svg id="wave-container" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" overflow="visible"></svg>
 
-      <!-- About 内容区 -->
-      <div class="about-wrapper">
-        <h1 class="page-title">OUR STORY</h1>
+      <!-- 成员列表内容区 -->
+      <div class="members-wrapper">
+        <h1 class="page-title">OUR TEAM</h1>
         
-        <div class="about-grid">
-          <!-- 介绍卡片 -->
-          <div class="about-card">
-            <div>
-              <h2 class="about-heading">关于毅阳工作室</h2>
-              <p class="about-text">
-                毅阳工作室（Yearnstudio）成立于2022年，是一个充满活力的云端技术工作室。我们由一群热爱技术、追求创新的开发者、设计师和创作者组成。
-                <br>
-                我们致力于在多个技术领域进行探索与研究，包括但不限于Scratch生态开发、云服务、AI应用以及开源工具。秉持着“开源公益”的精神，我们希望通过技术的力量，为社区创造价值。
-              </p>
-              <p class="about-text">
-                从最初的几个人的兴趣小组，到如今拥有多项成熟产品的成熟工作室，我们始终保持初心。在发展的道路上，我们不断吸收优秀的成员，完善我们的技术栈，提升服务质量。
-              </p>
-            </div>
-            
-            <div class="capabilities-list">
-              <span class="capability-tag">Web Development</span>
-              <span class="capability-tag">Branding & Identity</span>
-              <span class="capability-tag">Programs</span>
-            </div>
-          </div>
-
-          <!-- 数据指标卡片 -->
-          <div class="about-card">
-            <div>
-              <h2 class="about-heading">核心优势</h2>
-              <p class="about-text" style="margin-bottom: 2rem;">
-                用数据和经验说话，我们以严谨的工程态度对待每一次创造
-              </p>
-            </div>
-            
-            <div class="stats-grid">
-              <div class="stat-item">
-                <span class="stat-number">4+</span>
-                <span class="stat-label">Years Exp.</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number">10w+</span>
-                <span class="stat-label">Code Lines.</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number">10+</span>
-                <span class="stat-label">Project</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number">∞</span>
-                <span class="stat-label">Feature</span>
-              </div>
-            </div>
-          </div>
+        <div class="members-grid" id="member-cards">
         </div>
       </div>
     </div>
 
     <script>
+      const members = [
+        {
+          name: '阳毅',
+          role: '创始人 / 开发 / 运维',
+          img: 'https://q1.qlogo.cn/g?b=qq&nk=3303289608&s=640',
+          url: 'https://yangyiit.top'
+        },
+        {
+          name: '楼台倒影入池塘',
+          role: '创始人 / 美工',
+          img: 'https://q1.qlogo.cn/g?b=qq&nk=1040742877&s=640'
+        },
+        {
+          name: 'Tiger',
+          role: '开发 / 运维',
+          img: 'https://q1.qlogo.cn/g?b=qq&nk=2046056619&s=640',
+          url: 'https://blog.scerpark.cn/'
+        },
+        {
+          name: 'JadeSty1e',
+          role: '开发',
+          img: 'https://q1.qlogo.cn/g?b=qq&nk=2832017603&s=640'
+        },
+        {
+          name: 'TangerinePeel',
+          role: '开发',
+          img: 'https://q1.qlogo.cn/g?b=qq&nk=1694259407&s=640',
+          url: 'https://40code.com/#page=user&id=660'
+        },
+        {
+          name: '吾家小狐',
+          role: '开发 / 运维',
+          img: 'https://q1.qlogo.cn/g?b=qq&nk=399781969&s=640',
+          url: 'https://shunian.scerpark.cn/'
+        },
+        {
+          name: 'Cyberexplorer',
+          role: '开发',
+          img: 'https://q1.qlogo.cn/g?b=qq&nk=3091949883&s=640',
+          url: 'https://cyberneko.cn'
+        },
+        {
+          name: '星缘',
+          role: '美工',
+          img: 'https://q1.qlogo.cn/g?b=qq&nk=2573368926&s=640'
+        },
+        {
+          name: '路过的小贝壳',
+          role: '视频剪辑',
+          img: 'https://q1.qlogo.cn/g?b=qq&nk=2447186401&s=640'
+        },
+        {
+          name: '石头',
+          role: '开发',
+          img: 'https://q1.qlogo.cn/g?b=qq&nk=2029837068&s=640'
+        }
+      ];
+
       document.addEventListener("DOMContentLoaded", () => {
+        const cardsContainer = document.getElementById("member-cards");
+        cardsContainer.innerHTML = "";
+        
+        members.forEach(member => {
+          const cardHtml = `
+            <div class="member-card">
+              <img src="${member.img}" alt="${member.name}" class="member-avatar">
+              <h2 class="member-name">${member.name}</h2>
+              <p class="member-role">${member.role}</p>
+            </div>
+          `;
+          
+          if (member.url) {
+            cardsContainer.innerHTML += `<a href="${member.url}" target="_blank" style="text-decoration: none; color: inherit; display: block;">${cardHtml}</a>`;
+          } else {
+            cardsContainer.innerHTML += `<div style="text-decoration: none; color: inherit; display: block;">${cardHtml}</div>`;
+          }
+        });
+
+        // 波纹背景渲染
         const svgns = "http://www.w3.org/2000/svg";
         const container = document.getElementById("wave-container");
 

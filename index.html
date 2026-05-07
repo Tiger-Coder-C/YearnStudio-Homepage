@@ -1,1341 +1,872 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
+<!doctype html>
+<html lang="zh-CN">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>毅阳工作室 | Yearnstudio</title>
-  <meta name="description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星">
-  <meta name="keywords" content="Yearnstudio, 毅阳工作室, Scratch, 云变量, 多人联机, ShangCloud">
-  <meta name="author" content="Yearnstudio">
+  <meta name="description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星" />
+  <meta name="keywords" content="Yearnstudio, 毅阳工作室, Scratch, 云变量, 多人联机, ShangCloud" />
+  <meta name="author" content="Yearnstudio" />
 
   <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yearn.studio/">
-  <meta property="og:title" content="Yearnstudio 毅阳工作室">
-  <meta property="og:description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星">
-  <meta property="og:image" content="https://yearn.studio/logo.svg">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yearn.studio/" />
+  <meta property="og:title" content="Yearnstudio 毅阳工作室" />
+  <meta property="og:description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星" />
+  <meta property="og:image" content="https://yearn.studio/logo.svg" />
 
   <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://yearn.studio/">
-  <meta property="twitter:title" content="Yearnstudio 毅阳工作室">
-  <meta property="twitter:description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星">
-  <meta property="twitter:image" content="https://yearn.studio/logo.svg">
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://yearn.studio/" />
+  <meta property="twitter:title" content="Yearnstudio 毅阳工作室" />
+  <meta property="twitter:description" content="毅阳工作室Yearnstudio是一个成立于2022年的云工作室, 在多方面都有研究, 秉持着开源公益的精神与您共赴群星" />
+  <meta property="twitter:image" content="https://yearn.studio/logo.svg" />
 
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <script>
-    // 优先加载主题，避免页面闪烁
-    (function () {
-      const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      if (storedTheme === 'light') {
-        document.documentElement.classList.add('light-mode');
-      }
-    })();
-  </script>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,500;1,300&family=Noto+Serif+SC:wght@400;700;900&display=swap"
+    rel="stylesheet" />
+
   <style>
     :root {
-      --bg-color: #000;
-      --text-color: #fff;
-      --nav-bg: rgba(0, 0, 0, 0.8);
-      --footer-bg: #1a1a1a;
-      --footer-text: #ccc;
-      --footer-h3: #fff;
-      --link-color: #fff;
-      --link-hover: #ccc;
-      --header-bg: #000;
-      --card-bg: #1a1a1a;
+      --navy: #11143c;
+      --ink: #171743;
+      --pearl-white: #f7f7fb;
+      --pure-white: #ffffff;
+      --lavender: #b7b3eb;
+      --soft-lavender: #d9d7f4;
+      --violet: #5f54bc;
+      --gray: #53586f;
+      --light-gray: #a4abc4;
     }
 
-    .light-mode {
-      --bg-color: #fff;
-      --text-color: #000;
-      --nav-bg: rgba(255, 255, 255, 0.8);
-      --footer-bg: #f8f8f8;
-      --footer-text: #666;
-      --footer-h3: #333;
-      --link-color: #000;
-      --link-hover: #555;
-      --header-bg: #fff;
-      --card-bg: #f0f0f0;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--pearl-white);
+      font-family: "Montserrat", sans-serif;
     }
 
     body {
-      margin: 0;
-      font-family: "DengXian", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-      overflow-x: hidden;
-      transition: background 0.3s, color 0.3s;
+      color: var(--navy);
     }
 
-    /* 顶部固定导航栏 */
-    .navbar {
-      position: fixed;
+    .hero-section {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 52% 116%,
+          rgba(95, 84, 188, 0.22) 0%,
+          rgba(178, 177, 232, 0.12) 24%,
+          rgba(248, 249, 252, 0) 62%),
+        linear-gradient(135deg, #fbfbfd 0%, #f5f5fa 50%, #fafafe 100%);
+    }
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background:
+        radial-gradient(circle at 18% 12%,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0) 28%),
+        radial-gradient(circle at 80% 8%,
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(255, 255, 255, 0) 32%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* 背景斜向玻璃光带 */
+    .glass-beam {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      transform-origin: center;
+      border-radius: 28px;
+      mix-blend-mode: multiply;
+    }
+
+    .beam-main-left {
+      width: 42vw;
+      height: 70px;
+      left: 23vw;
+      top: 19vh;
+      transform: rotate(46deg);
+      background:
+        linear-gradient(90deg,
+          rgba(255, 255, 255, 0.05),
+          rgba(255, 255, 255, 0.55) 18%,
+          rgba(173, 170, 230, 0.3) 42%,
+          rgba(88, 78, 176, 0.88) 68%,
+          rgba(255, 255, 255, 0.28) 100%);
+      box-shadow:
+        18px 18px 38px rgba(74, 63, 158, 0.22),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.58),
+        inset 0 16px 24px rgba(255, 255, 255, 0.38);
+    }
+
+    .beam-main-left::after {
+      content: "";
+      position: absolute;
+      inset: 8px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-left-color: rgba(115, 103, 200, 0.26);
+      border-bottom-color: rgba(95, 84, 188, 0.18);
+    }
+
+    .beam-left-thin-1,
+    .beam-left-thin-2 {
+      width: 42vw;
+      height: 1px;
+      left: 22vw;
+      top: 18vh;
+      transform: rotate(46deg);
+      background: rgba(95, 84, 188, 0.22);
+    }
+
+    .beam-left-thin-2 {
+      top: 20.3vh;
+      left: 21.2vw;
+      opacity: 0.45;
+    }
+
+    .beam-right-wide {
+      width: 34vw;
+      height: 76px;
+      right: 18vw;
+      top: 20vh;
+      transform: rotate(-44deg);
+      background:
+        linear-gradient(90deg,
+          rgba(255, 255, 255, 0.72),
+          rgba(208, 206, 242, 0.32) 45%,
+          rgba(150, 145, 221, 0.22) 100%);
+      box-shadow:
+        16px 18px 38px rgba(95, 84, 188, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.66),
+        inset 0 16px 25px rgba(255, 255, 255, 0.5);
+    }
+
+    .beam-right-thin-1,
+    .beam-right-thin-2,
+    .beam-right-thin-3 {
+      width: 37vw;
+      height: 1px;
+      right: 9vw;
+      top: 20vh;
+      transform: rotate(-44deg);
+      background: rgba(95, 84, 188, 0.16);
+    }
+
+    .beam-right-thin-2 {
+      top: 22.4vh;
+      right: 8vw;
+      opacity: 0.6;
+    }
+
+    .beam-right-thin-3 {
+      top: 24.7vh;
+      right: 7vw;
+      opacity: 0.35;
+    }
+
+    .beam-vertical-left,
+    .beam-vertical-mid {
+      position: absolute;
+      z-index: 1;
+      top: 35vh;
+      width: 72px;
+      height: 52vh;
+      border-radius: 26px;
+      background:
+        linear-gradient(90deg,
+          rgba(255, 255, 255, 0.74),
+          rgba(201, 198, 238, 0.34),
+          rgba(255, 255, 255, 0.5));
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.65),
+        18px 16px 32px rgba(95, 84, 188, 0.1);
+      pointer-events: none;
+    }
+
+    .beam-vertical-left {
+      left: 45.8vw;
+    }
+
+    .beam-vertical-mid {
+      left: 50.4vw;
+      width: 55px;
+      opacity: 0.72;
+    }
+
+    .beam-vertical-left::after,
+    .beam-vertical-mid::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 12px;
+      width: 1px;
+      height: 100%;
+      background: rgba(95, 84, 188, 0.16);
+    }
+
+    /* 底部动态波纹 SVG 容器 */
+    #wave-container {
+      position: absolute;
+      bottom: -3vh;
+      left: 0;
+      width: 100vw;
+      height: 58vh;
+      z-index: 2;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    /* 顶部导航 */
+    header {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 60px;
-      background: var(--nav-bg);
-      backdrop-filter: blur(10px);
+      padding: 2.1rem 4.2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 20px;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-      transition: background 0.3s;
+      z-index: 10;
     }
 
-    .nav-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--text-color);
-      text-decoration: none;
+    .mini-logo svg {
+      width: 42px;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 8px 14px rgba(95, 84, 188, 0.12));
+    }
+
+    .nav-container {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 3.9rem;
     }
 
-    .nav-logo {
-      width: 32px;
-      height: 32px;
+    .nav-menu {
       display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 15px;
-      /* 减小间距 */
-      margin-left: auto;
-      /* 确保链接组靠右对齐 */
-      padding-left: 20px;
-      /* 添加左边距以增加空间 */
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--link-color);
-      text-decoration: none;
-      font-size: 0.85rem;
-      /* 进一步减小字体大小 */
-      transition: color 0.3s;
-      white-space: nowrap;
-      /* 防止文字换行 */
-    }
-
-    /* 隐藏滚动条 */
-    body::-webkit-scrollbar {
-      display: none;
-    }
-
-    body {
-      -ms-overflow-style: none;
-      /* IE and Edge */
-      scrollbar-width: none;
-      /* Firefox */
-      overflow-x: hidden;
-    }
-
-    .nav-links a:hover {
-      color: var(--link-hover);
-    }
-
-    .theme-toggle {
-      background: none;
-      border: 1px solid var(--text-color);
-      color: var(--text-color);
-      padding: 4px 12px;
-      cursor: pointer;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      margin-left: 10px;
-      transition: all 0.3s;
-      white-space: nowrap;
-    }
-
-    .theme-toggle:hover {
-      background: var(--text-color);
-      color: var(--bg-color);
-    }
-
-
-    nav {
-      /* 或者作用于包含这些 <li> 的 <ul> */
-      padding-right: 40px;
-      /* 增加右侧间距，预留出滚动条的空间 */
-      box-sizing: border-box;
-      /* 确保 padding 不会撑大容器总宽度 */
-    }
-
-    nav ul {
-      display: flex;
-      justify-content: flex-end;
       list-style: none;
-      margin-right: 20px;
-      /* 使用 margin 将整个列表向左拉一点 */
+      gap: 3.35rem;
     }
 
-    nav li {
-      margin-left: 30px;
-      /* 保持项与项之间的间距 */
-    }
-
-    /* 顶部标题区域 */
-    .top-header {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: var(--header-bg);
-      padding: 0;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
-    }
-
-    .header-logo {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 0;
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    .header-logo img {
-      width: 85vh;
-      height: 85vh;
-      object-fit: contain;
-    }
-
-    .header-content {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .top-header h1 {
-      font-size: 6rem;
-      margin: 0;
-      letter-spacing: -2px;
-      line-height: 1.1;
-      font-weight: 800;
-    }
-
-    .top-header .slogan {
-      font-size: 1.8rem;
-      margin-top: 20px;
-      opacity: 0.9;
-      letter-spacing: 12px;
-      text-transform: uppercase;
-      font-weight: 300;
-    }
-
-    /* 滚动轨道：根据步骤数量动态计算高度 */
-    .scroll-track {
-      height: 400vh;
-    }
-
-    /* 固定容器：在滚动期间一直留在屏幕上 */
-    .sticky-container {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
-
-    /* 内容层：绝对定位重叠在一起 */
-    .content-step {
-      position: absolute;
-      opacity: 0;
-      transform: scale(0.8);
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      gap: 60px;
-      max-width: 1200px;
-    }
-
-    .content-step img {
-      width: 400px;
-      height: 400px;
-      object-fit: cover;
-      border-radius: 20px;
-    }
-
-    .step-text {
-      text-align: left;
-    }
-
-    .step-text h2 {
-      font-size: 3rem;
-      margin: 0 0 20px 0;
-    }
-
-    .step-text p {
-      font-size: 1.5rem;
-      opacity: 0.8;
-      margin: 0 0 20px 0;
-      /* 添加底部外边距 */
-    }
-
-    .step-button {
-      display: inline-block;
-      padding: 12px 25px;
-      background-color: #007bff;
-      /* 蓝色背景 */
-      color: #fff;
-      /* 白色文字 */
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-      pointer-events: auto;
-      /* 允许按钮接收点击事件 */
-    }
-
-    .step-button:hover {
-      background-color: #0056b3;
-      /* 鼠标悬停时颜色变深 */
-    }
-
-    /* 隐藏标题，但保持可访问性 */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border-width: 0;
-    }
-
-    /* 初始显示第一屏 */
-    .step-1 {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* 工作室成员区域 */
-    .members-section {
-      padding: 80px 40px;
-      background: var(--bg-color);
-    }
-
-    .members-section h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 40px;
-    }
-
-    .members-grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .member-card {
-      width: 220px;
-      padding: 25px;
-      background: var(--card-bg);
-      border-radius: 12px;
-      text-align: center;
-      transition: transform 0.3s;
-      cursor: default;
-    }
-
-    .member-card.has-url {
+    .nav-menu li {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--navy);
       cursor: pointer;
-    }
-
-    .member-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .member-card img {
-      width: 80px;
-      height: 80px;
-      border-radius: 8px;
-      object-fit: cover;
-      margin-bottom: 15px;
-    }
-
-    .member-card .name {
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-bottom: 5px;
-    }
-
-    .member-card .role {
-      font-size: 0.85rem;
-      color: #007bff;
-      margin-bottom: 10px;
-    }
-
-
-    /* 用户评价区域 */
-    .testimonials-section {
-      padding: 80px 40px;
-      background: var(--bg-color);
-      overflow: hidden;
-    }
-
-    .testimonials-section h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 40px;
-    }
-
-    .testimonials-track {
-      display: flex;
-      gap: 20px;
-      will-change: transform;
-    }
-
-    .testimonial-card {
-      flex-shrink: 0;
-      width: 300px;
-      padding: 20px;
-      background: var(--card-bg);
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
       position: relative;
-      /* 添加相对定位 */
-      padding-bottom: 50px;
-      /* 为链接留出空间 */
     }
 
-    .testimonial-card img {
-      width: 50px;
-      height: 50px;
+    .nav-menu a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav-menu li.active::after {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      background-color: var(--violet);
       border-radius: 50%;
-      object-fit: cover;
     }
 
-    .testimonial-card .name {
-      font-weight: bold;
-      font-size: 1rem;
-    }
-
-    .testimonial-card .content {
-      font-size: 0.9rem;
-      opacity: 0.8;
-      line-height: 1.5;
-    }
-
-    .testimonial-card a {
-      color: #007bff;
-      text-decoration: none;
-      font-size: 0.85rem;
-      position: absolute;
-      /* 绝对定位 */
-      bottom: 20px;
-      /* 吸附到底部，与 padding 保持一致 */
-      left: 20px;
-      right: 20px;
-    }
-
-
-    /* 页脚样式 */
-    .footer-container {
-      display: flex;
-      /* 启用弹性布局 */
-      flex-direction: row;
-      /* 确保子项按行排列 */
-      justify-content: space-between;
-      /* 在列之间均匀分配空间 */
-      align-items: flex-start;
-      /* 顶部对齐 */
-      padding: 40px;
-      background-color: var(--footer-bg);
-      transition: background-color 0.3s;
-    }
-
-    .footer-column {
-      flex: 1;
-      /* 让每一列等宽 */
-      margin-right: 20px;
-      /* 列之间的间距 */
-    }
-
-    .footer-column:last-child {
-      margin-right: 0;
-    }
-
-    .footer-column h3 {
-      font-size: 16px;
-      margin-bottom: 15px;
-      color: var(--footer-h3);
-      transition: color 0.3s;
-    }
-
-    .footer-column ul {
-      list-style: none;
-      /* 移除列表圆点 */
-      padding: 0;
-    }
-
-    .footer-column li {
-      margin-bottom: 8px;
-      color: var(--footer-text);
-      transition: color 0.3s;
-    }
-
-    .footer-column a {
-      color: var(--footer-text);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer-column a:hover {
-      color: var(--link-hover);
-    }
-
-    .footer-brand-social {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      text-align: right;
-    }
-
-    .brand-info {
+    .connect-btn {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .footer-logo-img {
-      width: 36px;
-      height: 36px;
-      transition: filter 0.3s;
-    }
-
-    /* 在暗色模式下（默认）反转社交图标颜色，使其在深色背景下可见 */
-    body:not(.light-mode) .social-links .social-icon img {
-      filter: brightness(0) invert(1);
-    }
-
-    /* 页脚 Logo 在暗色模式下可以稍微增加亮度，但不完全反转颜色以保持品牌色彩 */
-    body:not(.light-mode) .footer-logo-img {
-      filter: brightness(1.2);
-    }
-
-    .brand-name {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--footer-h3);
-      letter-spacing: 1px;
-      line-height: 1.2;
-    }
-
-    .copyright {
-      font-size: 0.75rem;
-      color: var(--footer-text);
-      opacity: 0.8;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .social-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      opacity: 0.7;
+      gap: 1.1rem;
+      border: 1px solid rgba(17, 20, 60, 0.2);
+      border-radius: 999px;
+      padding: 0.72rem 1.4rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.36);
+      backdrop-filter: blur(8px);
       transition: all 0.3s ease;
     }
 
-    .social-icon:hover {
-      opacity: 1;
-      transform: translateY(-2px);
+    .connect-btn:hover {
+      border-color: rgba(17, 20, 60, 0.55);
+      background: rgba(255, 255, 255, 0.8);
     }
 
-    .social-icon img {
+    .connect-btn .ring-icon {
+      width: 10px;
+      height: 10px;
+      border: 1px solid var(--navy);
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .connect-btn .ring-icon::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 3px;
+      height: 3px;
+      transform: translate(-50%, -50%);
+      background: var(--navy);
+      border-radius: 50%;
+    }
+
+    /* 左侧内容区 */
+    .left-content {
+      position: absolute;
+      top: 51.2%;
+      left: 8.6vw;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: fit-content;
+    }
+
+    .name-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: max-content;
+    }
+
+    .name-cn {
+      font-family: "Noto Serif SC", serif;
+      /* font-size: clamp(5.6rem, 6.45vw, 8rem); */
+      font-size: clamp(3.5rem, 4.45vw, 5.5rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 0.95;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.08em;
+      text-shadow: 0 10px 22px rgba(17, 20, 60, 0.05);
+      white-space: nowrap;
+    }
+
+    .name-en {
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.55rem;
+      font-weight: 200;
+      letter-spacing: 0.58em;
+      color: rgba(17, 20, 60, 0.48);
+      line-height: 1;
+      width: 100%;
+    }
+
+    .subtitle {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      color: rgba(17, 20, 60, 0.65);
+      margin-top: 2.05rem;
+    }
+
+    .desc {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--gray);
+      margin-top: 0.85rem;
+      line-height: 1.75;
+      max-width: 330px;
+    }
+
+    .explore-link {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 2.25rem;
+      cursor: pointer;
+    }
+
+    .explore-link span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+    }
+
+    .explore-line {
+      width: 70px;
+      height: 1px;
+      background-color: var(--navy);
+      position: relative;
+      transition: width 0.3s ease;
+    }
+
+    .explore-line::before {
+      content: "";
+      position: absolute;
+      right: 33px;
+      top: -4px;
+      width: 8px;
+      height: 8px;
+      border-top: 1px solid var(--navy);
+      border-right: 1px solid var(--navy);
+      transform: rotate(45deg);
+    }
+
+    .explore-link:hover .explore-line {
+      width: 110px;
+    }
+
+    /* 中心 Logo */
+    .center-visual {
+      position: absolute;
+      top: 52%;
+      left: 52.8%;
+      transform: translate(-50%, -50%);
+      width: min(32vw, 61vh);
+      height: min(32vw, 61vh);
+      z-index: 4;
+    }
+
+    .center-visual svg {
       width: 100%;
       height: 100%;
-      transition: filter 0.3s;
-    }
-
-    /* 懒加载图片样式 */
-    .lazy-load {
-      background-color: #f0f0f0;
-      min-height: 128px;
-      min-width: 128px;
       display: block;
+      overflow: visible;
     }
 
-    body.light-mode .lazy-load {
-      background-color: #d0d0d0;
+    /* 右侧内容区 */
+    .right-content {
+      position: absolute;
+      top: 58.7%;
+      right: 12.6vw;
+      transform: translateY(-50%);
+      z-index: 10;
     }
 
-    /* 汉堡菜单样式 */
-    .burger-menu {
-      display: none;
-      /* 默认隐藏 */
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 25px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      z-index: 1001;
-      /* 确保在导航链接之上 */
+    .quote-box {
+      position: relative;
+      padding-left: 1.65rem;
     }
 
-    .burger-menu .bar {
-      width: 100%;
-      height: 3px;
-      background-color: var(--text-color);
-      border-radius: 10px;
+    .quote-box::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -2rem;
+      width: 1px;
+      height: 10.8rem;
+      background: rgba(17, 20, 60, 0.32);
     }
 
-    /* 媒体查询：手机端适配 */
-    @media screen and (max-width: 768px) {
-      .navbar {
-        padding: 0 20px;
-        /* 增加左右内边距 */
+    .quote-box::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -2rem;
+      width: 2rem;
+      height: 1px;
+      background: rgba(17, 20, 60, 0.28);
+    }
+
+    .quote-text {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.85;
+    }
+
+    .short-line {
+      width: 18px;
+      height: 2px;
+      background-color: var(--violet);
+      margin-top: 1.6rem;
+    }
+
+    @media (max-width: 980px) {
+
+      body,
+      html {
+        overflow: auto;
       }
 
-      .nav-title {
+      .hero-section {
+        min-height: 100vh;
+        height: auto;
+        padding-bottom: 34vh;
+      }
+
+      header {
+        padding: 1.6rem 1.5rem;
+      }
+
+      .nav-container {
+        display: none;
+      }
+
+      .left-content {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        padding: 10rem 1.8rem 0;
+      }
+
+      .name-wrapper {
+        width: max-content;
+      }
+
+      .name-cn {
+        font-size: 5.5rem;
+      }
+
+      .name-en {
         font-size: 1.2rem;
       }
 
-      .burger-menu {
-        display: flex;
-        /* 在手机端显示 */
-        margin-left: auto;
-        /* 确保靠右 */
+      .center-visual {
+        width: 54vw;
+        height: 54vw;
+        top: 55%;
+        left: 65%;
+        opacity: 0.45;
       }
 
-      .nav-links {
+      .right-content {
         display: none;
-        /* 默认隐藏导航链接 */
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: var(--nav-bg);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        padding: 20px 0;
-        gap: 10px;
-        align-items: center;
-        transition: all 0.3s ease-in-out;
       }
 
-      .nav-links.active {
-        display: flex;
-        /* 汉堡菜单打开时显示 */
-      }
-
-      .nav-links a {
-        font-size: 1rem;
-        padding: 10px 0;
-        width: 100%;
-        text-align: center;
-      }
-
-      .theme-toggle {
-        margin-left: 0;
-        margin-top: 10px;
-      }
-
-      .top-header {
-        flex-direction: column;
-        text-align: center;
-        padding: 100px 5% 0;
-        gap: 30px;
-      }
-
-      .header-logo {
-        width: 150px;
-        height: 150px;
-      }
-
-      .top-header h1 {
-        font-size: 2.5rem;
-      }
-
-      .top-header .slogan {
-        font-size: 1rem;
-        letter-spacing: 2px;
-      }
-
-      .content-step {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-        padding: 0 20px;
-      }
-
-      .content-step img {
-        width: 250px;
-        height: 250px;
-      }
-
-      .step-text h2 {
-        font-size: 2rem;
-      }
-
-      .step-text p {
-        font-size: 1.1rem;
-      }
-
-      .members-section {
-        padding: 60px 20px;
-      }
-
-      .members-section h2 {
-        font-size: 1.8rem;
-      }
-
-      .member-card {
-        width: 100%;
-        max-width: 280px;
-      }
-
-      .testimonials-section {
-        padding: 60px 20px;
-      }
-
-      .testimonials-section h2 {
-        font-size: 1.8rem;
-      }
-
-      .testimonial-card {
-        width: 250px;
-      }
-
-      .footer-container {
-        flex-direction: column;
-        align-items: center;
-        padding: 30px 20px;
-      }
-
-      .footer-column {
-        margin-right: 0;
-        margin-bottom: 30px;
-        text-align: center;
-      }
-
-      .footer-column:last-child {
-        margin-bottom: 0;
-      }
-
-      .footer-brand-social {
-        align-items: center;
-        text-align: center;
-        margin-top: 20px;
+      #wave-container {
+        height: 42vh;
       }
     }
   </style>
 </head>
 
 <body>
-  <script src="/static/gsap.min.js"></script>
-  <script src="/static/ScrollTrigger.min.js"></script>
+  <div class="hero-section">
+    <div class="glass-beam beam-main-left"></div>
+    <div class="glass-beam beam-left-thin-1"></div>
+    <div class="glass-beam beam-left-thin-2"></div>
 
-  <!-- 固定顶部导航栏 -->
-  <nav class="navbar">
-    <a href="#" class="nav-title">
-      <div class="nav-logo">
-        <img src="" data-src="/logo.svg" alt="logo" width="32" height="32" class="lazy-load">
+    <div class="glass-beam beam-right-wide"></div>
+    <div class="glass-beam beam-right-thin-1"></div>
+    <div class="glass-beam beam-right-thin-2"></div>
+    <div class="glass-beam beam-right-thin-3"></div>
+
+    <div class="beam-vertical-left"></div>
+    <div class="beam-vertical-mid"></div>
+
+    <!-- 顶部导航 -->
+    <header>
+      <div class="mini-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 466.5 435" fill="none">
+          <path fill="#11143C"
+            d="M21.0403 23.05L151.54 172.55L133.46 188.333L2.95972 38.8327L21.0403 23.05ZM132.439 173.902L239.369 9.39368L249.43 15.9335L239.369 9.39368C246.899 -2.19191 264.88 2.97927 265.105 16.7954L265.105 16.7954L268.998 255.746L245.002 256.137L241.108 17.1864L253.107 16.9909L241.108 17.1865C241.269 27.0551 254.112 30.7488 259.491 22.4734L259.491 22.4734L152.561 186.981L132.439 173.902ZM154.499 180.271L157.905 420.674L145.907 420.844L157.905 420.673C157.765 410.783 144.885 407.078 139.511 415.382L139.511 415.382L246.926 249.421L267.074 262.462L159.659 428.422L149.585 421.902L159.659 428.422C152.135 440.047 134.104 434.86 133.908 421.014L133.908 421.014L130.501 180.611L154.499 180.271ZM266.04 248.05L396.54 397.55L378.46 413.333L247.96 263.833L266.04 248.05ZM12 42.9414C5.37258 42.9414 0 37.5688 0 30.9414C0 24.314 5.37258 18.9414 12 18.9414C18.6274 18.9414 24 24.314 24 30.9414C24 37.5688 18.6274 42.9414 12 42.9414ZM387.5 417.441C380.873 417.441 375.5 412.069 375.5 405.441C375.5 398.814 380.873 393.441 387.5 393.441C394.127 393.441 399.5 398.814 399.5 405.441C399.5 412.069 394.127 417.441 387.5 417.441Z" />
+          <path fill="#5F54BC" opacity="0.72"
+            d="M88.0403 20.05L218.54 169.55L200.46 185.333L69.9597 35.8327L88.0403 20.05ZM199.439 170.902L306.369 6.39368L316.43 12.9335L306.369 6.39368C313.899 -5.19191 331.88 -0.0207324 332.105 13.7954L332.105 13.7954L335.998 252.746L312.002 253.137L308.108 14.1864L320.107 13.9909L308.108 14.1865C308.269 24.0551 321.112 27.7488 326.491 19.4734L326.491 19.4734L219.561 183.981L199.439 170.902ZM221.499 177.271L224.905 417.674L212.907 417.844L224.905 417.673C224.765 407.783 211.885 404.078 206.511 412.382L206.511 412.382L313.926 246.421L334.074 259.462L226.659 425.422L216.585 418.902L226.659 425.422C219.135 437.047 201.104 431.86 200.908 418.014L200.908 418.014L197.501 177.611L221.499 177.271ZM333.04 245.05L463.54 394.55L445.46 410.333L314.96 260.833L333.04 245.05ZM79 39.9414C72.3726 39.9414 67 34.5688 67 27.9414C67 21.314 72.3726 15.9414 79 15.9414C85.6274 15.9414 91 21.314 91 27.9414C91 34.5688 85.6274 39.9414 79 39.9414ZM454.5 414.441C447.873 414.441 442.5 409.069 442.5 402.441C442.5 395.814 447.873 390.441 454.5 390.441C461.127 390.441 466.5 395.814 466.5 402.441C466.5 409.069 461.127 414.441 454.5 414.441Z" />
+        </svg>
       </div>
-    </a>
-    <button class="burger-menu" id="burgerMenu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-    <div class="nav-links">
-      <a href="/">首页</a>
-      <a href="/projects">项目</a>
-      <a href="/about">关于</a>
-      <a href="/join">招纳贤才</a>
-      <button class="theme-toggle" id="themeToggle">显示模式</button>
-    </div>
-  </nav>
 
-  <!-- 顶部标题区域 -->
-  <div class="top-header">
-    <div class="header-logo">
-      <img src="" data-src="/logo.svg" alt="logo" class="lazy-load">
+      <div class="nav-container">
+        <ul class="nav-menu">
+          <li class="active">HOME</li>
+          <li><a href="/projects">PROJECTS</a></li>
+          <li><a href="/members">MEMBERS</a></li>
+          <li><a href="/about">ABOUT</a></li>
+          <li><a href="/contact">CONTACT</a></li>
+        </ul>
+
+        <!-- <div class="connect-btn">
+            LET'S CONNECT
+            <div class="ring-icon"></div>
+          </div> -->
+      </div>
+    </header>
+
+    <!-- 底部波纹 -->
+    <svg id="wave-container" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" overflow="visible"></svg>
+
+    <!-- 中心Logo -->
+    <div class="center-visual">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -30 535 510" fill="none">
+        <defs>
+          <linearGradient id="emboss_bg" x1="0" y1="0" x2="466" y2="435" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#FFFFFF" />
+            <stop offset="0.46" stop-color="#DAD8F2" />
+            <stop offset="1" stop-color="#A7A2DF" />
+          </linearGradient>
+
+          <linearGradient id="emboss_fg" x1="20" y1="0" x2="420" y2="420" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#26284F" />
+            <stop offset="0.44" stop-color="#171743" />
+            <stop offset="1" stop-color="#675CC7" />
+          </linearGradient>
+
+          <linearGradient id="side_glow" x1="0" y1="0" x2="466" y2="435" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#ffffff" stop-opacity="0.95" />
+            <stop offset="0.5" stop-color="#cfcdf1" stop-opacity="0.6" />
+            <stop offset="1" stop-color="#5f54bc" stop-opacity="0.28" />
+          </linearGradient>
+
+          <filter id="logo_shadow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="-13" dy="-12" stdDeviation="10" flood-color="#ffffff" flood-opacity="0.95" />
+            <feDropShadow dx="18" dy="20" stdDeviation="18" flood-color="#3e368c" flood-opacity="0.24" />
+            <feDropShadow dx="0" dy="8" stdDeviation="18" flood-color="#5f54bc" flood-opacity="0.2" />
+          </filter>
+
+          <filter id="soft_side" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="0.45" />
+            <feDropShadow dx="10" dy="14" stdDeviation="15" flood-color="#5f54bc" flood-opacity="0.15" />
+          </filter>
+        </defs>
+
+        <!-- 透明偏移层 -->
+        <g opacity="0.52" filter="url(#soft_side)" transform="translate(-36, 22)">
+          <path fill="url(#side_glow)"
+            d="M88.0403 20.05L218.54 169.55L200.46 185.333L69.9597 35.8327L88.0403 20.05ZM199.439 170.902L306.369 6.39368L316.43 12.9335L306.369 6.39368C313.899 -5.19191 331.88 -0.0207324 332.105 13.7954L332.105 13.7954L335.998 252.746L312.002 253.137L308.108 14.1864L320.107 13.9909L308.108 14.1865C308.269 24.0551 321.112 27.7488 326.491 19.4734L326.491 19.4734L219.561 183.981L199.439 170.902ZM221.499 177.271L224.905 417.674L212.907 417.844L224.905 417.673C224.765 407.783 211.885 404.078 206.511 412.382L206.511 412.382L313.926 246.421L334.074 259.462L226.659 425.422L216.585 418.902L226.659 425.422C219.135 437.047 201.104 431.86 200.908 418.014L200.908 418.014L197.501 177.611L221.499 177.271ZM333.04 245.05L463.54 394.55L445.46 410.333L314.96 260.833L333.04 245.05ZM79 39.9414C72.3726 39.9414 67 34.5688 67 27.9414C67 21.314 72.3726 15.9414 79 15.9414C85.6274 15.9414 91 21.314 91 27.9414C91 34.5688 85.6274 39.9414 79 39.9414ZM454.5 414.441C447.873 414.441 442.5 409.069 442.5 402.441C442.5 395.814 447.873 390.441 454.5 390.441C461.127 390.441 466.5 395.814 466.5 402.441C466.5 409.069 461.127 414.441 454.5 414.441Z" />
+        </g>
+
+        <g opacity="0.62" filter="url(#soft_side)" transform="translate(-67, 42)">
+          <path fill="url(#side_glow)"
+            d="M88.0403 20.05L218.54 169.55L200.46 185.333L69.9597 35.8327L88.0403 20.05ZM199.439 170.902L306.369 6.39368L316.43 12.9335L306.369 6.39368C313.899 -5.19191 331.88 -0.0207324 332.105 13.7954L332.105 13.7954L335.998 252.746L312.002 253.137L308.108 14.1864L320.107 13.9909L308.108 14.1865C308.269 24.0551 321.112 27.7488 326.491 19.4734L326.491 19.4734L219.561 183.981L199.439 170.902ZM221.499 177.271L224.905 417.674L212.907 417.844L224.905 417.673C224.765 407.783 211.885 404.078 206.511 412.382L206.511 412.382L313.926 246.421L334.074 259.462L226.659 425.422L216.585 418.902L226.659 425.422C219.135 437.047 201.104 431.86 200.908 418.014L200.908 418.014L197.501 177.611L221.499 177.271ZM333.04 245.05L463.54 394.55L445.46 410.333L314.96 260.833L333.04 245.05ZM79 39.9414C72.3726 39.9414 67 34.5688 67 27.9414C67 21.314 72.3726 15.9414 79 15.9414C85.6274 15.9414 91 21.314 91 27.9414C91 34.5688 85.6274 39.9414 79 39.9414ZM454.5 414.441C447.873 414.441 442.5 409.069 442.5 402.441C442.5 395.814 447.873 390.441 454.5 390.441C461.127 390.441 466.5 395.814 466.5 402.441C466.5 409.069 461.127 414.441 454.5 414.441Z" />
+        </g>
+
+        <!-- 紫色后层 -->
+        <path fill="url(#emboss_bg)" filter="url(#logo_shadow)" opacity="0.9"
+          d="M88.0403 20.05L218.54 169.55L200.46 185.333L69.9597 35.8327L88.0403 20.05ZM199.439 170.902L306.369 6.39368L316.43 12.9335L306.369 6.39368C313.899 -5.19191 331.88 -0.0207324 332.105 13.7954L332.105 13.7954L335.998 252.746L312.002 253.137L308.108 14.1864L320.107 13.9909L308.108 14.1865C308.269 24.0551 321.112 27.7488 326.491 19.4734L326.491 19.4734L219.561 183.981L199.439 170.902ZM221.499 177.271L224.905 417.674L212.907 417.844L224.905 417.673C224.765 407.783 211.885 404.078 206.511 412.382L206.511 412.382L313.926 246.421L334.074 259.462L226.659 425.422L216.585 418.902L226.659 425.422C219.135 437.047 201.104 431.86 200.908 418.014L200.908 418.014L197.501 177.611L221.499 177.271ZM333.04 245.05L463.54 394.55L445.46 410.333L314.96 260.833L333.04 245.05ZM79 39.9414C72.3726 39.9414 67 34.5688 67 27.9414C67 21.314 72.3726 15.9414 79 15.9414C85.6274 15.9414 91 21.314 91 27.9414C91 34.5688 85.6274 39.9414 79 39.9414ZM454.5 414.441C447.873 414.441 442.5 409.069 442.5 402.441C442.5 395.814 447.873 390.441 454.5 390.441C461.127 390.441 466.5 395.814 466.5 402.441C466.5 409.069 461.127 414.441 454.5 414.441Z" />
+
+        <!-- 深色前层 -->
+        <path fill="url(#emboss_fg)" filter="url(#logo_shadow)"
+          d="M21.0403 23.05L151.54 172.55L133.46 188.333L2.95972 38.8327L21.0403 23.05ZM132.439 173.902L239.369 9.39368L249.43 15.9335L239.369 9.39368C246.899 -2.19191 264.88 2.97927 265.105 16.7954L265.105 16.7954L268.998 255.746L245.002 256.137L241.108 17.1864L253.107 16.9909L241.108 17.1865C241.269 27.0551 254.112 30.7488 259.491 22.4734L259.491 22.4734L152.561 186.981L132.439 173.902ZM154.499 180.271L157.905 420.674L145.907 420.844L157.905 420.673C157.765 410.783 144.885 407.078 139.511 415.382L139.511 415.382L246.926 249.421L267.074 262.462L159.659 428.422L149.585 421.902L159.659 428.422C152.135 440.047 134.104 434.86 133.908 421.014L133.908 421.014L130.501 180.611L154.499 180.271ZM266.04 248.05L396.54 397.55L378.46 413.333L247.96 263.833L266.04 248.05ZM12 42.9414C5.37258 42.9414 0 37.5688 0 30.9414C0 24.314 5.37258 18.9414 12 18.9414C18.6274 18.9414 24 24.314 24 30.9414C24 37.5688 18.6274 42.9414 12 42.9414ZM387.5 417.441C380.873 417.441 375.5 412.069 375.5 405.441C375.5 398.814 380.873 393.441 387.5 393.441C394.127 393.441 399.5 398.814 399.5 405.441C399.5 412.069 394.127 417.441 387.5 417.441Z" />
+      </svg>
     </div>
-    <div class="header-content">
-      <h1>Yearnstudio<br>毅阳工作室</h1>
-      <p class="slogan">ONLY TRUST HERE</p>
+
+    <!-- 左侧信息 -->
+    <div class="left-content">
+      <div class="name-wrapper">
+        <h1 class="name-cn">毅阳工作室</h1>
+        <h2 class="name-en">Yearnstudio</h2>
+      </div>
+
+      <p class="subtitle">All trust here</p>
+      <!-- <p class="desc">
+          
+        </p> -->
+
+      <!-- <div class="explore-link">
+          <span>EXPLORE WORK</span>
+          <div class="explore-line"></div>
+        </div> -->
+    </div>
+
+    <!-- 右侧文案 -->
+    <div class="right-content">
+      <div class="quote-box">
+        <p class="quote-text">
+          Code<br>
+          Create<br>
+          Design<br>
+          Share the world
+        </p>
+        <div class="short-line"></div>
+      </div>
     </div>
   </div>
-
-  <h2 id="works-section" class="sr-only">项目展示列表</h2>
-  <div class="scroll-track">
-    <div class="sticky-container" id="worksContainer">
-      <!-- 项目将由 JS 动态渲染 -->
-    </div>
-  </div>
-
-  <!-- 工作室成员区域 -->
-  <section class="members-section">
-    <h2>工作室成员</h2>
-    <div class="members-grid" id="membersGrid">
-      <!-- 成员将由 JS 动态渲染 -->
-    </div>
-  </section>
-
-  <!-- 用户评价区域 -->
-  <section class="testimonials-section">
-    <h2>用户评价</h2>
-    <div class="testimonials-track" id="testimonialsTrack">
-      <!-- 评价将由 JS 动态渲染 -->
-    </div>
-  </section>
-
-  <!-- 页脚 -->
-  <footer class="footer-container">
-    <div class="footer-column" style="display: flex; flex-direction: column;">
-      <h3>产品</h3>
-      <ul>
-        <li><a href="https://api.yearnstudio.cn">ShangCloud</a></li>
-        <li><a href="https://sbox.yearnstudio.cn">小盒子社区</a></li>
-        <li><a href="https://black.yearnstudio.cn">云黑名单</a></li>
-        <li><a href="/projects">更多</a></li>
-      </ul>
-    </div>
-    <div class="footer-column" style="display: flex; flex-direction: column;">
-      <h3>支持</h3>
-      <ul>
-        <li><a href="/about">关于我们</a></li>
-        <li><a href="/join">招纳贤才</a></li>
-        <li><a href="/moments">风采展示</a></li>
-      </ul>
-    </div>
-    <div class="footer-column" style="display: flex; flex-direction: column;">
-      <h3>合作</h3>
-      <ul>
-        <li><a href="https://www.40code.com">40code</a></li>
-        <li><a href="https://zerocat.dev">ZeroCat</a></li>
-        <li><a href="https://houlang.cloud">厚浪云</a></li>
-        <li><a href="https://ling.hujiarong.site">灵阁</a></li>
-      </ul>
-    </div>
-    <div class="footer-column footer-brand-social">
-      <div class="brand-info">
-        <img src="" data-src="/logo.svg" alt="Yearnstudio Logo" class="footer-logo-img lazy-load">
-        <div style="display: flex; flex-direction: column;">
-          <span class="brand-name">Yearnstudio</span>
-          <span class="copyright">All rights reversed © 2022-<span id="currentYear"></span></span>
-        </div>
-      </div>
-      <div class="social-links">
-        <a href="https://space.bilibili.com/1128177448" class="social-icon" title="Bilibili">
-          <img src="" id="bilibili-icon" width="32" height="32">
-        </a>
-        <a href="https://qm.qq.com/cgi-bin/qm/qr?k=2O7iqw_PwPDCa3UmIKgbB_bE0-vKLShS&jump_from=webapi&authKey=wf7amC4VLkzkyAK4Pu4No4LFpKpnD0H9hjSMM/tO1NgiMx0DOP3TE4fUC9UPwkuY"
-          class="social-icon" title="QQ群">
-          <img src="" id="qq-icon" width="32" height="32">
-        </a>
-        <a href="https://discord.gg/A8W4jHQf4a" class="social-icon" title="Discord群组">
-          <img src="" id="discord-icon" width="32" height="32">
-        </a>
-        <a href="mailto:contact@yearn.studio" class="social-icon" title="官方邮箱">
-          <img src="" id="mail-icon" width="32" height="32">
-        </a>
-        <a href="https://github.com/YearnstudioHorizon" class="social-icon" title="GitHub">
-          <img src="" id="github-icon" width="32" height="32">
-        </a>
-      </div>
-    </div>
-  </footer>
 
   <script>
-    gsap.registerPlugin(ScrollTrigger);
+    document.addEventListener("DOMContentLoaded", () => {
+      const svgns = "http://www.w3.org/2000/svg";
+      const container = document.getElementById("wave-container");
 
-    // 懒加载功能实现
-    const lazyLoadImages = () => {
-      // 社交图标不再通过此函数懒加载，它们由 applyTheme 函数直接设置 src
-      // 其他需要懒加载的图片（如作品图片、成员头像、评价头像）仍通过此函数处理
-      const images = document.querySelectorAll('.lazy-load:not(.social-icon img)'); // 排除社交图标
-      const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            if (img.dataset.src) { // 确保有 data-src 属性才进行加载
-              img.src = img.dataset.src;
-              img.classList.remove('lazy-load');
-              observer.unobserve(img);
-            }
+      function buildWaves() {
+        container.innerHTML = "";
+
+        const W = window.innerWidth;
+        const H = window.innerHeight * 0.58;
+
+        container.setAttribute("viewBox", `0 0 ${W} ${H}`);
+
+        const defs = document.createElementNS(svgns, "defs");
+
+        const glow = document.createElementNS(svgns, "filter");
+        glow.setAttribute("id", "waveGlow");
+        glow.setAttribute("x", "-10%");
+        glow.setAttribute("y", "-40%");
+        glow.setAttribute("width", "120%");
+        glow.setAttribute("height", "180%");
+
+        const blur = document.createElementNS(svgns, "feGaussianBlur");
+        blur.setAttribute("stdDeviation", "2.5");
+        blur.setAttribute("result", "blur");
+
+        const merge = document.createElementNS(svgns, "feMerge");
+        const m1 = document.createElementNS(svgns, "feMergeNode");
+        m1.setAttribute("in", "blur");
+        const m2 = document.createElementNS(svgns, "feMergeNode");
+        m2.setAttribute("in", "SourceGraphic");
+
+        merge.appendChild(m1);
+        merge.appendChild(m2);
+        glow.appendChild(blur);
+        glow.appendChild(merge);
+        defs.appendChild(glow);
+        container.appendChild(defs);
+
+        function spline(pts) {
+          let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+
+          for (let i = 0; i < pts.length - 1; i++) {
+            const p0 = pts[Math.max(0, i - 1)];
+            const p1 = pts[i];
+            const p2 = pts[i + 1];
+            const p3 = pts[Math.min(pts.length - 1, i + 2)];
+
+            const c1x = p1[0] + (p2[0] - p0[0]) / 6;
+            const c1y = p1[1] + (p2[1] - p0[1]) / 6;
+            const c2x = p2[0] - (p3[0] - p1[0]) / 6;
+            const c2y = p2[1] - (p3[1] - p1[1]) / 6;
+
+            d += ` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(
+              1
+            )},${c2y.toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
           }
-        });
-      });
 
-      images.forEach(img => imageObserver.observe(img));
+          return d;
+        }
 
-      // 为testimonial链接添加点击事件 (保持不变)
-      document.querySelectorAll('.testimonial-link').forEach(link => {
-        link.addEventListener('click', function (e) {
-          const imgSrc = this.dataset.imgSrc;
-          const img = document.querySelector(`img[data-src="${imgSrc}"]`); // 这里的 img 仍然是 lazy-load 的
-          if (img && !img.src) {
-            e.preventDefault();
-            img.addEventListener('load', () => {
-              window.open(this.href, '_blank');
-            });
-            img.src = img.dataset.src;
+        const NUM = 104;
+        const S = 150;
+
+        for (let i = 0; i < NUM; i++) {
+          const t = i / (NUM - 1);
+
+          const baseY = H * (1.02 - t * 0.54);
+          const amp = H * (0.09 + Math.pow(t, 1.35) * 0.34);
+
+          const cx1 = W * 0.41;
+          const s1 = W * 0.115;
+          const cx2 = W * 0.72;
+          const s2 = W * 0.105;
+          const valley = W * 0.56;
+          const valleyS = W * 0.09;
+
+          const pts = [];
+
+          for (let j = 0; j <= S; j++) {
+            const x = -80 + (j * (W + 160)) / S;
+
+            const g1 = Math.exp(-0.5 * ((x - cx1) / s1) ** 2);
+            const g2 = Math.exp(-0.5 * ((x - cx2) / s2) ** 2);
+            const gv = Math.exp(-0.5 * ((x - valley) / valleyS) ** 2);
+
+            const leftDip =
+              Math.exp(-0.5 * ((x - W * 0.15) / (W * 0.11)) ** 2) *
+              H *
+              0.12 *
+              (0.2 + t);
+
+            const micro =
+              Math.sin(x * 0.0065 + t * 5.4) * (1.6 + t * 5.2) +
+              Math.sin(x * 0.012 - t * 4.1) * (0.7 + t * 3.1);
+
+            const y =
+              baseY -
+              amp * (g1 * 1.1 + g2 * 0.9) +
+              amp * gv * 0.46 +
+              leftDip +
+              micro;
+
+            pts.push([x, y]);
           }
-        });
-      });
-    };
 
-    // 确保DOM加载完成后执行懒加载
-    document.addEventListener('DOMContentLoaded', lazyLoadImages);
+          const path = document.createElementNS(svgns, "path");
+          path.setAttribute("d", spline(pts));
+          path.setAttribute("fill", "none");
+          path.setAttribute(
+            "stroke",
+            `rgba(95,84,188,${(0.045 + t * 0.33).toFixed(3)})`
+          );
+          path.setAttribute("stroke-width", t > 0.72 ? "1.15" : "0.85");
 
-    // 优化手机端滚动体验，减少惯性滚动的干扰
-    if (window.innerWidth <= 768) {
-      ScrollTrigger.normalizeScroll(true);
-    }
-
-    // 项目列表数据
-    const works = [
-      {
-        name: 'ShangCloud',
-        desc: '全新设计的全公益Scratch云变量存储、多人联机服务提供平台',
-        url: 'https://api.yearnstudio.cn',
-        img: '/images/shangcloud.svg'
-      },
-      {
-        name: '小盒子社区',
-        desc: '新一代Scratch社区',
-        url: 'https://sbox.yearnstudio.cn',
-        // img: ''
-      },
-      {
-        name: 'YearnstudioBot',
-        desc: '一个工具向第三方/官方混合QQ机器人',
-        img: '/logo.svg'
-      }
-    ];
-
-    // 工作室成员数据
-    const members = [
-      {
-        name: '阳毅',
-        role: '创始人 / 开发 / 运维',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=3303289608&s=640',
-        url: 'https://yangyiit.top'
-      },
-      {
-        name: '楼台倒影入池塘',
-        role: '创始人 / 美工',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=1040742877&s=640'
-      },
-      {
-        name: 'Tiger',
-        role: '开发 / 运维',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=2046056619&s=640',
-        url: 'https://blog.scerpark.cn/'
-      },
-      {
-        name: 'JadeSty1e',
-        role: '开发',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=2832017603&s=640'
-      },
-      {
-        name: 'TangerinePeel',
-        role: '开发',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=1694259407&s=640',
-        url: 'https://40code.com/#page=user&id=660'
-      },
-      {
-        name: '吾家小狐',
-        role: '开发 / 运维',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=399781969&s=640',
-        url: 'https://shunian.scerpark.cn/'
-      },
-      {
-        name: 'Cyberexplorer',
-        role: '开发',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=3091949883&s=640',
-        url: 'https://cyberneko.cn'
-      },
-      {
-        name: '星缘',
-        role: '美工',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=2573368926&s=640'
-      },
-      {
-        name: '路过的小贝壳',
-        role: '视频剪辑',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=2447186401&s=640'
-      },
-      {
-        name: '石头',
-        role: '开发',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=2029837068&s=640'
-      }
-    ];
-
-    // 用户评价数据
-    const testimonials = [
-      {
-        name: '主核Kernyr',
-        content: '这是一个非常神奇的工作室，室长执行力爆表，成员卧虎藏虾，神秘感拉满',
-        img: '/images/kernyr.jpg',
-        url: 'https://hujiarong.site'
-      },
-      {
-        name: '祈安',
-        content: '资源站总体评价优良，但是响应速度还有待加强。下载镜像链接🔗有概率无法加载，期待改进！祝资源站永远盎然向欣',
-        img: '/images/qian.jpg'
-      },
-      {
-        name: 'Cyberexplorer',
-        content: '快把我的项目上传小盒子，快把我的项目上传小盒子✋😭✋',
-        img: '/images/cyberexplorer.jpg',
-        url: 'https://cyberneko.cn'
-      },
-      {
-        name: 'Kikl',
-        content: '工作室具备扎实的技术储备，在项目对接中沟通效率高，可根据实际需求调整优化方案，交付成果稳定性强，满足既定技术指标与应用场景要求',
-        img: '/images/kikl.jpg'
-      },
-      {
-        name: '孙悟元',
-        content: '我一直关注Yearnstudio工作室的动向，非常看好这个工作室的潜力，他们的资源站收录了许多有用的东西，对我有很大帮助，如果你在其中仔细寻找，想必会有所收获。',
-        img: '/images/wuyuan.jpg',
-        url: 'https://wuyuan.dev'
-      },
-      {
-        name: '酷玩小子',
-        content: '资源站整体不错，但下载速度和镜像解析下载有待加强',
-        img: '/images/kuwan.png'
-      },
-      {
-        name: '深海DeepSea',
-        content: 'ShangCloud是我目前见过最成熟的第三方Scratch云存储，比我之前做的奇异搞笑海云不知好多少',
-        img: '/images/deepsea.jpg',
-        url: 'https://deepsealab.dpdns.org'
-      },
-      {
-        name: '神秘丶Hils · dack',
-        content: '这是一个非常有潜力的资源站，里面的成员非常的油菜花',
-        img: '/images/hilsdack.jpg',
-        url: 'https://pixelmap.minegraph.cn/user/hils_dack/?profiletab=posts'
-      },
-      {
-        name: 'GMUnitX',
-        content: '难得的公益性质站点，界面现代简洁，用户体验良好，兼具稳定性和快速性',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=3689800637&s=640',
-        url: 'https://www.gmxse.top'
-      },
-      {
-        name: 'samsungi9308',
-        content: '资源站整体体验良好，可以解决123云盘下载要求付费的问题，让我的粉丝可以更方便的下载我分享的文件',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=692304319&s=640',
-        url: 'https://space.bilibili.com/349260010'
-      },
-      {
-        name: 'CakesAreLies',
-        content: '路漫漫其修远兮，吾将上下而求索。',
-        img: 'https://q1.qlogo.cn/g?b=qq&nk=3428848818&s=640',
-        url: 'https://space.bilibili.com/1845800720'
-      }
-    ];
-
-    // 动态渲染项目
-    const container = document.getElementById('worksContainer');
-    works.forEach((work, index) => {
-      const step = document.createElement('div');
-      step.className = `content-step step-${index + 1}`;
-      step.innerHTML = `
-        <img src="" data-src="${work.img}" alt="${work.name}" style="width: 128px; height: 128px;" class="lazy-load">
-        <div class="step-text">
-          <h2 id="${work.name.toLowerCase()}">${work.name}</h2>
-          <p>${work.desc}</p>
-          ${work.url ? `<a href="${work.url}" class="step-button">了解更多</a>` : ''}
-        </div>
-      `;
-      container.appendChild(step);
-    });
-
-    // 动态渲染工作室成员
-    const membersGrid = document.getElementById('membersGrid');
-    members.forEach(m => {
-      const card = document.createElement('div');
-      card.className = 'member-card' + (m.url ? ' has-url' : '');
-      card.innerHTML = `
-        <img src="" data-src="${m.img}" alt="${m.name}" class="lazy-load">
-        <div class="name">${m.name}</div>
-        <div class="role">${m.role}</div>
-      `;
-      if (m.url) {
-        card.addEventListener('click', () => {
-          // 确保图片加载后再跳转
-          const img = card.querySelector('img');
-          if (img.src) {
-            window.open(m.url, '_blank');
-          } else {
-            img.addEventListener('load', () => {
-              window.open(m.url, '_blank');
-            });
+          if (i > 78) {
+            path.setAttribute("filter", "url(#waveGlow)");
           }
-        });
-      }
-      membersGrid.appendChild(card);
-    });
 
-    // 动态渲染用户评价
-    const track = document.getElementById('testimonialsTrack');
-
-    function createTestimonialCard(t) {
-      const card = document.createElement('div');
-      card.className = 'testimonial-card';
-      card.innerHTML = `
-        <img src="" data-src="${t.img}" alt="${t.name}" class="lazy-load">
-        <div class="name">${t.name}</div>
-        <div class="content">${t.content}</div>
-        ${t.url ? `<a href="${t.url}" target="_blank" class="testimonial-link" data-img-src="${t.img}">查看主页</a>` : ''}
-      `;
-      return card;
-    }
-
-    // 初始渲染，为了填满屏幕并能平滑滚动，我们可能需要渲染两组或更多，
-    // 但根据用户要求"超过范围后删除并重新添加到右侧"，我们只需要初始渲染足够覆盖视图的卡片即可。
-    // 这里先渲染一遍。
-    testimonials.forEach(t => {
-      track.appendChild(createTestimonialCard(t));
-    });
-
-    // 无缝滚动逻辑
-    let scrollPos = 0;
-    const speed = 1; // 滚动速度
-    let isPaused = false;
-
-    track.addEventListener('mouseenter', () => isPaused = true);
-    track.addEventListener('mouseleave', () => isPaused = false);
-
-    function updateScroll() {
-      if (!isPaused) {
-        scrollPos -= speed;
-
-        // 获取第一个元素
-        const firstCard = track.firstElementChild;
-        if (firstCard) {
-          const cardWidth = firstCard.offsetWidth;
-          const gap = 20; // 与 CSS 中的 gap 一致
-
-          // 如果第一个元素完全移出视野（包括间距）
-          if (Math.abs(scrollPos) >= cardWidth + gap) {
-            // 将第一个元素移动到末尾
-            track.appendChild(firstCard);
-            // 重置滚动位置，补偿移动的宽度
-            scrollPos += cardWidth + gap;
-          }
+          container.appendChild(path);
         }
 
-        track.style.transform = `translateX(${scrollPos}px)`;
-      }
-      requestAnimationFrame(updateScroll);
-    }
+        const fillPath = document.createElementNS(svgns, "path");
+        const fillPts = [];
 
-    // 确保初始内容足够多，如果评价太少不足以填满容器，则复制一份
-    function ensureEnoughContent() {
-      const containerWidth = document.querySelector('.testimonials-section').offsetWidth;
-      let currentWidth = track.scrollWidth;
+        for (let j = 0; j <= S; j++) {
+          const x = -80 + (j * (W + 160)) / S;
+          const g1 = Math.exp(-0.5 * ((x - W * 0.41) / (W * 0.115)) ** 2);
+          const g2 = Math.exp(-0.5 * ((x - W * 0.72) / (W * 0.105)) ** 2);
 
-      while (currentWidth < containerWidth * 2) {
-        testimonials.forEach(t => {
-          track.appendChild(createTestimonialCard(t));
-        });
-        currentWidth = track.scrollWidth;
-      }
-    }
+          const y =
+            H * 0.82 -
+            H * 0.22 * g1 -
+            H * 0.16 * g2 +
+            Math.sin(x * 0.007) * 4;
 
-    ensureEnoughContent();
-    requestAnimationFrame(updateScroll);
-
-    // 动态设置滚动轨道高度
-    document.querySelector('.scroll-track').style.height = `${works.length * 100}vh`;
-
-    // 创建动画
-    const steps = document.querySelectorAll('.content-step');
-    const numSteps = works.length; // 使用 works.length 来确保与项目数据数量一致
-
-    gsap.set(steps, { opacity: 0, scale: 0.8, pointerEvents: 'none' });
-    gsap.set(steps[0], { opacity: 1, scale: 1, pointerEvents: 'auto' });
-
-    let mm = gsap.matchMedia();
-
-    mm.add("(min-width: 769px)", () => {
-      // 桌面端动画
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".scroll-track",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1,
+          fillPts.push([x, y]);
         }
-      });
 
-      for (let i = 0; i < numSteps - 1; i++) {
-        tl.to(steps[i], { opacity: 0, scale: 1.2, duration: 1, pointerEvents: 'none' });
-        tl.to(steps[i + 1], { opacity: 1, scale: 1, duration: 1, pointerEvents: 'auto' }, "-=0.5");
-        tl.to({}, { duration: 0.5 });
+        fillPath.setAttribute(
+          "d",
+          `${spline(fillPts)} L ${W + 120},${H + 60} L -120,${H + 60} Z`
+        );
+        fillPath.setAttribute("fill", "rgba(95,84,188,0.085)");
+        fillPath.setAttribute("filter", "url(#waveGlow)");
+        container.insertBefore(fillPath, container.children[1]);
+
+        const dotX = W * 0.5;
+        const dotY = H * 0.92;
+
+        // const ring = document.createElementNS(svgns, "circle");
+        // ring.setAttribute("cx", dotX);
+        // ring.setAttribute("cy", dotY);
+        // ring.setAttribute("r", "15");
+        // ring.setAttribute("fill", "rgba(255,255,255,0.4)");
+        // ring.setAttribute("stroke", "rgba(17,20,60,0.16)");
+        // ring.setAttribute("stroke-width", "1");
+        // container.appendChild(ring);
+
+        // const dot = document.createElementNS(svgns, "circle");
+        // dot.setAttribute("cx", dotX);
+        // dot.setAttribute("cy", dotY);
+        // dot.setAttribute("r", "5.5");
+        // dot.setAttribute("fill", "#11143C");
+        // dot.setAttribute("opacity", "0.86");
+        // container.appendChild(dot);
       }
-    });
 
-    mm.add("(max-width: 768px)", () => {
-      // 手机端动画
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".scroll-track",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.5, // 增加平滑延迟，配合限制滑动的逻辑
-          snap: {
-            snapTo: (value) => {
-              const step = 1 / (numSteps - 1);
-              const currentProgress = tl.scrollTrigger ? tl.scrollTrigger.progress : 0;
-              const currentStep = Math.round(currentProgress / step);
-              const targetStep = Math.round(value / step);
+      buildWaves();
 
-              // 核心逻辑：限制每次滑动最多只切换一个项目
-              if (targetStep > currentStep) {
-                return (currentStep + 1) * step;
-              } else if (targetStep < currentStep) {
-                return (currentStep - 1) * step;
-              }
-              return value;
-            },
-            duration: { min: 0.2, max: 0.4 },
-            delay: 0,
-            ease: "power1.inOut"
-          }
-        }
-      });
-
-      for (let i = 0; i < numSteps - 1; i++) {
-        tl.to(steps[i], { opacity: 0, scale: 1.2, duration: 1, pointerEvents: 'none' });
-        tl.to(steps[i + 1], { opacity: 1, scale: 1, duration: 1, pointerEvents: 'auto' }, "-=0.5");
-        tl.to({}, { duration: 0.5 });
-      }
-    });
-    // 最后一个保持显示，不淡出
-
-    // 顶部标题区域滚动效果
-    gsap.to(".top-header", {
-      scrollTrigger: {
-        trigger: ".top-header",
-        start: "top top",
-        end: "bottom center",
-        scrub: 1,
-      },
-      opacity: 0,
-      y: -50,
-      ease: "power2.inOut"
-    });
-
-    // 暗色/亮色模式切换
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-
-    // 函数：应用主题并更新按钮文本
-    function applyTheme(theme) {
-      if (theme === 'light') {
-        document.documentElement.classList.add('light-mode');
-        body.classList.add('light-mode');
-        themeToggle.textContent = '暗色模式';
-        document.getElementById('bilibili-icon').src = 'https://cdn.simpleicons.org/bilibili/dark';
-        document.getElementById('qq-icon').src = 'https://cdn.simpleicons.org/qq/dark';
-        document.getElementById('discord-icon').src = 'https://cdn.simpleicons.org/discord/dark';
-        document.getElementById('mail-icon').src = 'https://cdn.simpleicons.org/mail.ru/dark';
-        const githubIcon = document.getElementById('github-icon');
-        if (githubIcon) {
-          githubIcon.src = 'https://cdn.simpleicons.org/github/dark';
-        }
-      } else {
-        document.documentElement.classList.remove('light-mode');
-        body.classList.remove('light-mode');
-        themeToggle.textContent = '亮色模式';
-        document.getElementById('bilibili-icon').src = 'https://cdn.simpleicons.org/bilibili/white';
-        document.getElementById('qq-icon').src = 'https://cdn.simpleicons.org/qq/white';
-        document.getElementById('discord-icon').src = 'https://cdn.simpleicons.org/discord/white';
-        document.getElementById('mail-icon').src = 'https://cdn.simpleicons.org/mail.ru/white';
-        const githubIcon = document.getElementById('github-icon');
-        if (githubIcon) {
-          githubIcon.src = 'https://cdn.simpleicons.org/github/white';
-        }
-      }
-    }
-
-    // 页面加载时，根据 localStorage 或系统偏好设置主题
-    const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    applyTheme(storedTheme);
-
-    // 监听系统主题变化
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-      if (!localStorage.getItem('theme')) { // 只有在没有手动设置主题时才响应系统变化
-        applyTheme(event.matches ? 'dark' : 'light');
-      }
-    });
-
-    // 切换按钮点击事件
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('theme', newTheme); // 保存用户手动选择的主题
-      applyTheme(newTheme);
-    });
-
-    // 汉堡菜单功能
-    const burgerMenu = document.getElementById('burgerMenu');
-    const navLinks = document.querySelector('.nav-links');
-
-    burgerMenu.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    // 设置当前年份
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-    // 点击导航链接后关闭菜单
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          burgerMenu.classList.remove('open');
-        }
+      let timer;
+      window.addEventListener("resize", () => {
+        clearTimeout(timer);
+        timer = setTimeout(buildWaves, 160);
       });
     });
   </script>
