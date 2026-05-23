@@ -285,6 +285,11 @@
       color: var(--navy);
       cursor: pointer;
       position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-menu li:hover {
+      color: var(--violet);
     }
 
     .nav-menu a {
@@ -292,7 +297,7 @@
       text-decoration: none;
     }
 
-    .nav-menu li.active::after {
+    .nav-menu li::after {
       content: "";
       position: absolute;
       bottom: -12px;
@@ -302,6 +307,13 @@
       height: 4px;
       background-color: var(--violet);
       border-radius: 50%;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu li.active::after,
+    .nav-menu li:hover::after {
+      opacity: 1;
     }
 
     /* 动画定义 */
@@ -797,8 +809,8 @@
       const svgns = "http://www.w3.org/2000/svg";
       const container = document.getElementById("wave-container");
 
-      const NUM = 82; // 适度减少波浪数量提高性能
-      const S = 100;  // 减少分段数
+      const NUM = 42; // 大幅减少波浪数量以优化性能
+      const S = 60;   // 减少分段数
       let fillPath;
       let time = 0;
       let W, H;
@@ -806,17 +818,17 @@
       let fillPrecomputed = [];
 
       function spline(pts) {
-        let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+        let d = "M" + pts[0][0].toFixed(1) + "," + pts[0][1].toFixed(1);
         for (let i = 0; i < pts.length - 1; i++) {
-          const p0 = pts[Math.max(0, i - 1)];
+          const p0 = pts[i === 0 ? 0 : i - 1];
           const p1 = pts[i];
           const p2 = pts[i + 1];
-          const p3 = pts[Math.min(pts.length - 1, i + 2)];
+          const p3 = (i + 2 >= pts.length) ? pts[pts.length - 1] : pts[i + 2];
           const c1x = p1[0] + (p2[0] - p0[0]) / 6;
           const c1y = p1[1] + (p2[1] - p0[1]) / 6;
           const c2x = p2[0] - (p3[0] - p1[0]) / 6;
           const c2y = p2[1] - (p3[1] - p1[1]) / 6;
-          d += ` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+          d += "C" + c1x.toFixed(1) + "," + c1y.toFixed(1) + " " + c2x.toFixed(1) + "," + c2y.toFixed(1) + " " + p2[0].toFixed(1) + "," + p2[1].toFixed(1);
         }
         return d;
       }
@@ -860,7 +872,7 @@
           const x = -80 + (j * (W + 160)) / S;
           const g1 = Math.exp(-0.5 * ((x - cx1) / s1) ** 2);
           const g2 = Math.exp(-0.5 * ((x - cx2) / s2) ** 2);
-          fillPrecomputed.push({ x, g1, g2 });
+          fillPrecomputed.push({ x, g1, g2, baseY: H * 0.82 - H * 0.22 * g1 - H * 0.16 * g2 });
         }
         for (let i = 0; i < NUM; i++) {
           const t = i / (NUM - 1);
@@ -871,11 +883,14 @@
           if (i > NUM * 0.75) path.setAttribute("filter", "url(#waveGlow)");
           container.appendChild(path);
 
+          const baseY = H * (1.02 - t * 0.54);
+          const amp = H * (0.09 + Math.pow(t, 1.35) * 0.34);
+
           const iData = {
             el: path,
             t: t,
-            baseY: H * (1.02 - t * 0.54),
-            amp: H * (0.09 + Math.pow(t, 1.35) * 0.34),
+            m1: 1.6 + t * 5.2,
+            m2: 0.7 + t * 3.1,
             pts: []
           };
 
@@ -885,7 +900,8 @@
             const g2 = Math.exp(-0.5 * ((x - cx2) / s2) ** 2);
             const gv = Math.exp(-0.5 * ((x - valley) / valleyS) ** 2);
             const leftDip = Math.exp(-0.5 * ((x - W * 0.15) / (W * 0.11)) ** 2) * H * 0.12 * (0.2 + t);
-            iData.pts.push({ x, g1, g2, gv, leftDip });
+            const y0 = baseY - amp * (g1 * 1.1 + g2 * 0.9) + amp * gv * 0.46 + leftDip;
+            iData.pts.push({ x, y0 });
           }
           precomputed.push(iData);
         }
@@ -895,18 +911,17 @@
         for (let i = 0; i < NUM; i++) {
           const data = precomputed[i];
           const pts = data.pts.map(p => {
-            const micro = Math.sin(p.x * 0.0065 + data.t * 5.4 + time) * (1.6 + data.t * 5.2) +
-                          Math.sin(p.x * 0.012 - data.t * 4.1 + time * 0.5) * (0.7 + data.t * 3.1);
-            return [p.x, data.baseY - data.amp * (p.g1 * 1.1 + p.g2 * 0.9) + data.amp * p.gv * 0.46 + p.leftDip + micro];
+            const micro = Math.sin(p.x * 0.0065 + data.t * 5.4 + time) * data.m1 +
+                          Math.sin(p.x * 0.012 - data.t * 4.1 + time * 0.5) * data.m2;
+            return [p.x, p.y0 + micro];
           });
           data.el.setAttribute("d", spline(pts));
         }
 
         const fillPts = fillPrecomputed.map(p => {
-          const y = H * 0.82 - H * 0.22 * p.g1 - H * 0.16 * p.g2 + Math.sin(p.x * 0.007 + time * 0.8) * 4;
-          return [p.x, y];
+          return [p.x, p.baseY + Math.sin(p.x * 0.007 + time * 0.8) * 4];
         });
-        fillPath.setAttribute("d", `${spline(fillPts)} L ${W + 120},${H + 60} L -120,${H + 60} Z`);
+        fillPath.setAttribute("d", spline(fillPts) + "L" + (W + 120) + "," + (H + 60) + "L-120," + (H + 60) + "Z");
       }
 
       function tick() {
