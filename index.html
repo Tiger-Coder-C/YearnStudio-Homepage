@@ -259,6 +259,15 @@
       z-index: 999;
     }
 
+    .mini-logo {
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .mini-logo:hover {
+      transform: scale(1.15) rotate(2deg);
+    }
+
     .mini-logo svg {
       width: 42px;
       height: auto;
@@ -308,7 +317,7 @@
       background-color: var(--violet);
       border-radius: 50%;
       opacity: 0;
-      transition: all 0.3s ease;
+      transition: opacity 0.3s ease;
     }
 
     .nav-menu li.active::after,
@@ -330,13 +339,13 @@
 
     @keyframes float {
       0% {
-        transform: translate(-50%, -50%) rotate(0deg);
+        transform: translate(-50%, -50%) translateY(0) rotate(0deg);
       }
       50% {
-        transform: translate(-50%, -48%) rotate(1deg);
+        transform: translate(-50%, -50%) translateY(-18px) rotate(1.2deg);
       }
       100% {
-        transform: translate(-50%, -50%) rotate(0deg);
+        transform: translate(-50%, -50%) translateY(0) rotate(0deg);
       }
     }
 
@@ -517,7 +526,14 @@
       width: min(32vw, 61vh);
       height: min(32vw, 61vh);
       z-index: 4;
-      animation: float 8s ease-in-out infinite;
+      animation: float 10s ease-in-out infinite;
+      transition: filter 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .center-visual:hover {
+      filter: brightness(1.08) drop-shadow(0 25px 50px rgba(95, 84, 188, 0.28));
+      transform: translate(-50%, -50%) scale(1.05);
     }
 
     .center-visual svg {
