@@ -789,194 +789,139 @@
       // 汉堡菜单交互
       const hamburger = document.querySelector('.hamburger-btn');
       if (hamburger) {
-          hamburger.addEventListener('click', () => {
-              document.body.classList.toggle('menu-open');
-          });
+        hamburger.addEventListener('click', () => {
+          document.body.classList.toggle('menu-open');
+        });
       }
 
       const svgns = "http://www.w3.org/2000/svg";
       const container = document.getElementById("wave-container");
 
+      const NUM = 82; // 适度减少波浪数量提高性能
+      const S = 100;  // 减少分段数
+      let fillPath;
       let time = 0;
-      function buildWaves() {
+      let W, H;
+      let precomputed = [];
+      let fillPrecomputed = [];
+
+      function spline(pts) {
+        let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+        for (let i = 0; i < pts.length - 1; i++) {
+          const p0 = pts[Math.max(0, i - 1)];
+          const p1 = pts[i];
+          const p2 = pts[i + 1];
+          const p3 = pts[Math.min(pts.length - 1, i + 2)];
+          const c1x = p1[0] + (p2[0] - p0[0]) / 6;
+          const c1y = p1[1] + (p2[1] - p0[1]) / 6;
+          const c2x = p2[0] - (p3[0] - p1[0]) / 6;
+          const c2y = p2[1] - (p3[1] - p1[1]) / 6;
+          d += ` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+        }
+        return d;
+      }
+
+      function initWaves() {
         container.innerHTML = "";
+        precomputed = [];
+        fillPrecomputed = [];
 
-        const W = window.innerWidth;
-        const H = window.innerHeight * 0.58;
-
+        W = window.innerWidth;
+        H = window.innerHeight * 0.58;
         container.setAttribute("viewBox", `0 0 ${W} ${H}`);
 
         const defs = document.createElementNS(svgns, "defs");
-
         const glow = document.createElementNS(svgns, "filter");
         glow.setAttribute("id", "waveGlow");
-        glow.setAttribute("x", "-10%");
-        glow.setAttribute("y", "-40%");
-        glow.setAttribute("width", "120%");
-        glow.setAttribute("height", "180%");
-
+        glow.setAttribute("x", "-10%"); glow.setAttribute("y", "-40%");
+        glow.setAttribute("width", "120%"); glow.setAttribute("height", "180%");
         const blur = document.createElementNS(svgns, "feGaussianBlur");
         blur.setAttribute("stdDeviation", "2.5");
         blur.setAttribute("result", "blur");
-
         const merge = document.createElementNS(svgns, "feMerge");
-        const m1 = document.createElementNS(svgns, "feMergeNode");
-        m1.setAttribute("in", "blur");
-        const m2 = document.createElementNS(svgns, "feMergeNode");
-        m2.setAttribute("in", "SourceGraphic");
-
-        merge.appendChild(m1);
-        merge.appendChild(m2);
-        glow.appendChild(blur);
-        glow.appendChild(merge);
+        const m1 = document.createElementNS(svgns, "feMergeNode"); m1.setAttribute("in", "blur");
+        const m2 = document.createElementNS(svgns, "feMergeNode"); m2.setAttribute("in", "SourceGraphic");
+        merge.appendChild(m1); merge.appendChild(m2);
+        glow.appendChild(blur); glow.appendChild(merge);
         defs.appendChild(glow);
         container.appendChild(defs);
 
-        function spline(pts) {
-          let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+        fillPath = document.createElementNS(svgns, "path");
+        fillPath.setAttribute("fill", "rgba(95,84,188,0.085)");
+        fillPath.setAttribute("filter", "url(#waveGlow)");
+        container.appendChild(fillPath);
 
-          for (let i = 0; i < pts.length - 1; i++) {
-            const p0 = pts[Math.max(0, i - 1)];
-            const p1 = pts[i];
-            const p2 = pts[i + 1];
-            const p3 = pts[Math.min(pts.length - 1, i + 2)];
+        const cx1 = W * 0.41, s1 = W * 0.115;
+        const cx2 = W * 0.72, s2 = W * 0.105;
+        const valley = W * 0.56, valleyS = W * 0.09;
 
-            const c1x = p1[0] + (p2[0] - p0[0]) / 6;
-            const c1y = p1[1] + (p2[1] - p0[1]) / 6;
-            const c2x = p2[0] - (p3[0] - p1[0]) / 6;
-            const c2y = p2[1] - (p3[1] - p1[1]) / 6;
-
-            d += ` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(
-              1
-            )},${c2y.toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
-          }
-
-          return d;
+        // Precompute fill path base values
+        for (let j = 0; j <= S; j++) {
+          const x = -80 + (j * (W + 160)) / S;
+          const g1 = Math.exp(-0.5 * ((x - cx1) / s1) ** 2);
+          const g2 = Math.exp(-0.5 * ((x - cx2) / s2) ** 2);
+          fillPrecomputed.push({ x, g1, g2 });
         }
-
-        const NUM = 104;
-        const S = 150;
-
         for (let i = 0; i < NUM; i++) {
           const t = i / (NUM - 1);
+          const path = document.createElementNS(svgns, "path");
+          path.setAttribute("fill", "none");
+          path.setAttribute("stroke", `rgba(95,84,188,${(0.045 + t * 0.33).toFixed(3)})`);
+          path.setAttribute("stroke-width", t > 0.72 ? "1.15" : "0.85");
+          if (i > NUM * 0.75) path.setAttribute("filter", "url(#waveGlow)");
+          container.appendChild(path);
 
-          const baseY = H * (1.02 - t * 0.54);
-          const amp = H * (0.09 + Math.pow(t, 1.35) * 0.34);
-
-          const cx1 = W * 0.41;
-          const s1 = W * 0.115;
-          const cx2 = W * 0.72;
-          const s2 = W * 0.105;
-          const valley = W * 0.56;
-          const valleyS = W * 0.09;
-
-          const pts = [];
+          const iData = {
+            el: path,
+            t: t,
+            baseY: H * (1.02 - t * 0.54),
+            amp: H * (0.09 + Math.pow(t, 1.35) * 0.34),
+            pts: []
+          };
 
           for (let j = 0; j <= S; j++) {
             const x = -80 + (j * (W + 160)) / S;
-
             const g1 = Math.exp(-0.5 * ((x - cx1) / s1) ** 2);
             const g2 = Math.exp(-0.5 * ((x - cx2) / s2) ** 2);
             const gv = Math.exp(-0.5 * ((x - valley) / valleyS) ** 2);
-
-            const leftDip =
-              Math.exp(-0.5 * ((x - W * 0.15) / (W * 0.11)) ** 2) *
-              H *
-              0.12 *
-              (0.2 + t);
-
-            const micro =
-              Math.sin(x * 0.0065 + t * 5.4 + time) * (1.6 + t * 5.2) +
-              Math.sin(x * 0.012 - t * 4.1 + time * 0.5) * (0.7 + t * 3.1);
-
-            const y =
-              baseY -
-              amp * (g1 * 1.1 + g2 * 0.9) +
-              amp * gv * 0.46 +
-              leftDip +
-              micro;
-
-            pts.push([x, y]);
+            const leftDip = Math.exp(-0.5 * ((x - W * 0.15) / (W * 0.11)) ** 2) * H * 0.12 * (0.2 + t);
+            iData.pts.push({ x, g1, g2, gv, leftDip });
           }
+          precomputed.push(iData);
+        }
+      }
 
-          const path = document.createElementNS(svgns, "path");
-          path.setAttribute("d", spline(pts));
-          path.setAttribute("fill", "none");
-          path.setAttribute(
-            "stroke",
-            `rgba(95,84,188,${(0.045 + t * 0.33).toFixed(3)})`
-          );
-          path.setAttribute("stroke-width", t > 0.72 ? "1.15" : "0.85");
-
-          if (i > 78) {
-            path.setAttribute("filter", "url(#waveGlow)");
-          }
-
-          container.appendChild(path);
+      function updateWaves() {
+        for (let i = 0; i < NUM; i++) {
+          const data = precomputed[i];
+          const pts = data.pts.map(p => {
+            const micro = Math.sin(p.x * 0.0065 + data.t * 5.4 + time) * (1.6 + data.t * 5.2) +
+                          Math.sin(p.x * 0.012 - data.t * 4.1 + time * 0.5) * (0.7 + data.t * 3.1);
+            return [p.x, data.baseY - data.amp * (p.g1 * 1.1 + p.g2 * 0.9) + data.amp * p.gv * 0.46 + p.leftDip + micro];
+          });
+          data.el.setAttribute("d", spline(pts));
         }
 
-        const fillPath = document.createElementNS(svgns, "path");
-        const fillPts = [];
-
-        for (let j = 0; j <= S; j++) {
-          const x = -80 + (j * (W + 160)) / S;
-          const g1 = Math.exp(-0.5 * ((x - W * 0.41) / (W * 0.115)) ** 2);
-          const g2 = Math.exp(-0.5 * ((x - W * 0.72) / (W * 0.105)) ** 2);
-
-          const y =
-            H * 0.82 -
-            H * 0.22 * g1 -
-            H * 0.16 * g2 +
-            Math.sin(x * 0.007 + time * 0.8) * 4;
-
-          fillPts.push([x, y]);
-        }
-
-        fillPath.setAttribute(
-          "d",
-          `${spline(fillPts)} L ${W + 120},${H + 60} L -120,${H + 60} Z`
-        );
-        fillPath.setAttribute("fill", "rgba(95,84,188,0.085)");
-        fillPath.setAttribute("filter", "url(#waveGlow)");
-        container.insertBefore(fillPath, container.children[1]);
-
-        const dotX = W * 0.5;
-        const dotY = H * 0.92;
-
-        // const ring = document.createElementNS(svgns, "circle");
-        // ring.setAttribute("cx", dotX);
-        // ring.setAttribute("cy", dotY);
-        // ring.setAttribute("r", "15");
-        // ring.setAttribute("fill", "rgba(255,255,255,0.4)");
-        // ring.setAttribute("stroke", "rgba(17,20,60,0.16)");
-        // ring.setAttribute("stroke-width", "1");
-        // container.appendChild(ring);
-
-        // const dot = document.createElementNS(svgns, "circle");
-        // dot.setAttribute("cx", dotX);
-        // dot.setAttribute("cy", dotY);
-        // dot.setAttribute("r", "5.5");
-        // dot.setAttribute("fill", "#11143C");
-        // dot.setAttribute("opacity", "0.86");
-        // container.appendChild(dot);
+        const fillPts = fillPrecomputed.map(p => {
+          const y = H * 0.82 - H * 0.22 * p.g1 - H * 0.16 * p.g2 + Math.sin(p.x * 0.007 + time * 0.8) * 4;
+          return [p.x, y];
+        });
+        fillPath.setAttribute("d", `${spline(fillPts)} L ${W + 120},${H + 60} L -120,${H + 60} Z`);
       }
 
       function tick() {
         time += 0.005;
-        buildWaves();
+        updateWaves();
         requestAnimationFrame(tick);
       }
 
-      // Initial build and start animation
-      buildWaves();
+      initWaves();
       tick();
 
       let timer;
       window.addEventListener("resize", () => {
         clearTimeout(timer);
-        timer = setTimeout(() => {
-          buildWaves();
-        }, 160);
+        timer = setTimeout(initWaves, 200);
       });
     });
   </script>
