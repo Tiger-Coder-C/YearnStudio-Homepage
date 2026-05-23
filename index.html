@@ -110,6 +110,7 @@
       left: 23vw;
       top: 19vh;
       transform: rotate(46deg);
+      animation: beamFloat 12s ease-in-out infinite;
       background:
         linear-gradient(90deg,
           rgba(255, 255, 255, 0.05),
@@ -141,6 +142,7 @@
       top: 18vh;
       transform: rotate(46deg);
       background: rgba(95, 84, 188, 0.22);
+      animation: beamFloat 14s ease-in-out infinite;
     }
 
     .beam-left-thin-2 {
@@ -155,6 +157,7 @@
       right: 18vw;
       top: 20vh;
       transform: rotate(-44deg);
+      animation: beamFloatReverse 15s ease-in-out infinite;
       background:
         linear-gradient(90deg,
           rgba(255, 255, 255, 0.72),
@@ -175,6 +178,7 @@
       top: 20vh;
       transform: rotate(-44deg);
       background: rgba(95, 84, 188, 0.16);
+      animation: beamFloatReverse 18s ease-in-out infinite;
     }
 
     .beam-right-thin-2 {
@@ -197,6 +201,7 @@
       width: 72px;
       height: 52vh;
       border-radius: 26px;
+      animation: verticalBeamFloat 10s ease-in-out infinite;
       background:
         linear-gradient(90deg,
           rgba(255, 255, 255, 0.74),
@@ -299,6 +304,57 @@
       border-radius: 50%;
     }
 
+    /* 动画定义 */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      50% {
+        transform: translate(-50%, -48%) rotate(1deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+    }
+
+    @keyframes beamFloat {
+      0%, 100% {
+        transform: rotate(46deg) translate(0, 0);
+      }
+      50% {
+        transform: rotate(46deg) translate(10px, -10px);
+      }
+    }
+
+    @keyframes beamFloatReverse {
+      0%, 100% {
+        transform: rotate(-44deg) translate(0, 0);
+      }
+      50% {
+        transform: rotate(-44deg) translate(-10px, -10px);
+      }
+    }
+
+    @keyframes verticalBeamFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
     .connect-btn {
       display: flex;
       align-items: center;
@@ -368,6 +424,7 @@
       letter-spacing: 0.08em;
       text-shadow: 0 10px 22px rgba(17, 20, 60, 0.05);
       white-space: nowrap;
+      animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
     }
 
     .name-en {
@@ -378,6 +435,7 @@
       color: rgba(17, 20, 60, 0.48);
       line-height: 1;
       width: 100%;
+      animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
     }
 
     .subtitle {
@@ -386,6 +444,7 @@
       letter-spacing: 0.13em;
       color: rgba(17, 20, 60, 0.65);
       margin-top: 2.05rem;
+      animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s both;
     }
 
     .desc {
@@ -395,6 +454,7 @@
       margin-top: 0.85rem;
       line-height: 1.75;
       max-width: 330px;
+      animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
     }
 
     .explore-link {
@@ -445,6 +505,7 @@
       width: min(32vw, 61vh);
       height: min(32vw, 61vh);
       z-index: 4;
+      animation: float 8s ease-in-out infinite;
     }
 
     .center-visual svg {
@@ -466,6 +527,7 @@
     .quote-box {
       position: relative;
       padding-left: 1.65rem;
+      animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s both;
     }
 
     .quote-box::before {
@@ -735,6 +797,7 @@
       const svgns = "http://www.w3.org/2000/svg";
       const container = document.getElementById("wave-container");
 
+      let time = 0;
       function buildWaves() {
         container.innerHTML = "";
 
@@ -823,8 +886,8 @@
               (0.2 + t);
 
             const micro =
-              Math.sin(x * 0.0065 + t * 5.4) * (1.6 + t * 5.2) +
-              Math.sin(x * 0.012 - t * 4.1) * (0.7 + t * 3.1);
+              Math.sin(x * 0.0065 + t * 5.4 + time) * (1.6 + t * 5.2) +
+              Math.sin(x * 0.012 - t * 4.1 + time * 0.5) * (0.7 + t * 3.1);
 
             const y =
               baseY -
@@ -864,7 +927,7 @@
             H * 0.82 -
             H * 0.22 * g1 -
             H * 0.16 * g2 +
-            Math.sin(x * 0.007) * 4;
+            Math.sin(x * 0.007 + time * 0.8) * 4;
 
           fillPts.push([x, y]);
         }
@@ -898,12 +961,22 @@
         // container.appendChild(dot);
       }
 
+      function tick() {
+        time += 0.005;
+        buildWaves();
+        requestAnimationFrame(tick);
+      }
+
+      // Initial build and start animation
       buildWaves();
+      tick();
 
       let timer;
       window.addEventListener("resize", () => {
         clearTimeout(timer);
-        timer = setTimeout(buildWaves, 160);
+        timer = setTimeout(() => {
+          buildWaves();
+        }, 160);
       });
     });
   </script>
